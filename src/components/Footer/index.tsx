@@ -1,28 +1,30 @@
 import React from 'react';
+import { Row, Col, Divider } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-layout';
+import styles from './footer.less';
 
 export default () => (
   <DefaultFooter
-    copyright="2020 蚂蚁集团体验技术部出品"
+    copyright="NJUPT.SAST 1992-2021"
     links={[
       {
-        key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
-        href: 'https://pro.ant.design',
+        key: 'Emain',
+        title: 'Mail to Us',
+        href: 'https://sast@njupt.edu.cn',
         blankTarget: true,
       },
       {
         key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        title: 'Github',
+        href: 'https://github.com',
         blankTarget: true,
       },
       {
-        key: 'Ant Design',
-        title: 'Ant Design',
-        href: 'https://ant.design',
-        blankTarget: true,
+        key: 'QQ',
+        title: 'QQ:2595331904',
+        href: 'https://sast.njupt.edu.cn/public/img/qq_qrcode.png',
+        blankTarget: false,
       },
     ]}
   />
