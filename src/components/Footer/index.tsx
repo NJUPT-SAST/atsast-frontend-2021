@@ -20,7 +20,10 @@ export default () => (
                     Igniting the Thought！
                 </div>
                 <div style={text_style}>
-                    南京邮电大学大学生科学技术协会（简称SAST）是在校团委指导下，独立展开活动的学生科技文化及学术研究组织。
+                    南京邮电大学大学生科学技术协会（简称SAST）是在校团委指导下，
+                </div>     
+                <div style={text_style}>
+                    独立展开活动的学生科技文化及学术研究组织。
                 </div>
                 <div style={text_style}>
                   Copyright © NJUPT.SAST 1992-2021
@@ -35,10 +38,13 @@ export default () => (
                     Mail to us
                 </div>
                 <div style={text_style}>
-                    1111111111
+                    
+                    <span>
+                        Github
+                    </span>
                 </div>
                 <div style={text_style}>
-                    1111111111
+                    QQ:2595331904
                 </div>
              
             </Col>
