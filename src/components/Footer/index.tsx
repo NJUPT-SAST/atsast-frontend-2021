@@ -1,7 +1,10 @@
 import React from 'react';
 import { Row, Col, Divider } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '@ant-design/pro-layout';
+import { MailOutlined } from '@ant-design/icons';
+import { QqOutlined } from '@ant-design/icons';
+import { styles } from './styles.less';
+
 
 const box_style = {
   padding: '8px 0',
@@ -10,10 +13,11 @@ const box_style = {
 
 }
 const text_style = {
-  margin: '3px 0',
+  margin: '3px 3px',
 }
+
 export default () => (
-    <div style={box_style}>
+    <div style={box_style} >
         <Row justify="center" align="top" wrap gutter={ [48,16]}>
             <Col span="12" offset="2">
                 <div style={text_style}>
@@ -32,19 +36,29 @@ export default () => (
             </Col>
             <Col span="8" offset="2">
                 <div style={text_style}>
-                    Contact Us
-                </div>
-                <div style={text_style}>
-                    Mail to us
-                </div>
-                <div style={text_style}>
-                    
-                    <span>
-                        Github
+                    <span style={{fontSize:"20px"}}>
+                        Contact Us
                     </span>
                 </div>
                 <div style={text_style}>
-                    QQ:2595331904
+                    <MailOutlined />
+                    <span style={text_style}>
+                      Mail to us
+                    </span>
+                </div>
+                <div style={text_style} >
+                    <a href="https://github.com/NJUPT-SAST-Technology-Center">
+                         <GithubOutlined />
+                         <span style={text_style}>
+                              Github
+                         </span>
+                    </a>
+                </div>
+                <div style={text_style} >
+                    <QqOutlined />
+                    <span style={text_style}>
+                      QQ:2595331904
+                    </span>
                 </div>
              
             </Col>
