@@ -6,6 +6,7 @@ import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import type { ResponseError } from 'umi-request';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
@@ -58,6 +59,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       content: initialState?.currentUser?.name,
     },
     footerRender: () => <Footer />,
+    // headerContentRender: () => <Header />,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
