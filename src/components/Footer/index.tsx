@@ -18,7 +18,7 @@ const text_style = {
 
 export default () => (
     <div style={box_style} >
-        <Row justify="center" align="top" wrap gutter={ [48,16]}>
+        <Row justify="center" align="top" wrap gutter={ [0,16]}>
             <Col span="12" offset="2">
                 <div style={text_style}>
                     Igniting the Thought！
