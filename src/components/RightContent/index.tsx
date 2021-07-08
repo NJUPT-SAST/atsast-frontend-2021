@@ -4,6 +4,7 @@ import React from 'react';
 import { useModel, SelectLang } from 'umi';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
+import NoticeIcon from '../NoticeIcon';
 import styles from './index.less';
 
 export type SiderTheme = 'light' | 'dark';
@@ -43,14 +44,15 @@ const GlobalHeaderRight: React.FC = () => {
         //   console.log('input', value);
         // }}
       />
-      <span
+      {/* <span
         className={styles.action}
         onClick={() => {
           window.open('https://pro.ant.design/docs/getting-started');
         }}
       >
         <QuestionCircleOutlined />
-      </span>
+      </span> */}
+      <NoticeIcon />
       <Avatar />
       {REACT_APP_ENV && (
         <span>

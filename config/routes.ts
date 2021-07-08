@@ -22,6 +22,18 @@
     component: './Welcome',
   },
   {
+    path: '/activity',
+    name: '活动',
+    icon: 'flag',
+    component: './Activity',
+  },
+  {
+    path: '/lecture',
+    name: '授课',
+    icon: 'bulb',
+    component: './Lecture',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
