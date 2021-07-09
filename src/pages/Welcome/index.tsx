@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Alert, Typography } from 'antd';
+import { Card,Carousel,Icon } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
-import { Carousel } from 'antd';
+import { VerticalAlignMiddleOutlined } from '@ant-design/icons';
 
 const contentStyle = {
   height: '200px',
@@ -16,20 +16,22 @@ export default (): React.ReactNode => {
   const intl = useIntl();
   return (
     <PageContainer>
-      <Carousel autoplay="true">
-        <div>
-          <h3 style={contentStyle}>PicLink1</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>PicLink2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>Picklink3</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>Piclink4</h3>
-        </div>
-      </Carousel>
+      <Card hoverable bordered={false}>
+        <Carousel autoplay>
+          <div>
+            <h3 style={contentStyle}>PicLink1</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>PicLink2</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>Picklink3</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>Piclink4</h3>
+          </div>
+        </Carousel>
+      </Card>
     </PageContainer>
   );
 };

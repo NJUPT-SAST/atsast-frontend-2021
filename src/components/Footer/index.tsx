@@ -59,7 +59,7 @@ export default () => (
                 <div style={text_style} >
                     <QqOutlined />
                     <span style={text_style}>
-                      QQ:2595331904
+                      QQ 2595331904
                     </span>
                 </div>
              
