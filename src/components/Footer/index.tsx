@@ -41,10 +41,12 @@ export default () => (
                     </span>
                 </div>
                 <div style={text_style}>
-                    <MailOutlined />
-                    <span style={text_style}>
-                      Mail to us
-                    </span>
+                    <a href="mailto:sast@njupt.edu.cn">
+                        <MailOutlined />
+                        <span style={text_style}>
+                        Mail to us
+                        </span>
+                    </a>
                 </div>
                 <div style={text_style} >
                     <a href="https://github.com/NJUPT-SAST-Technology-Center">
