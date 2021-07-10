@@ -55,6 +55,10 @@
     component: './TableList',
   },
   {
+    path: '/competition/detail',
+    component: './Competition/Detail',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

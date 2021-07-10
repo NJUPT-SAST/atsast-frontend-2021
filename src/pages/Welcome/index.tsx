@@ -73,7 +73,7 @@ export default (): React.ReactNode => {
               </Carousel>
             }
           >
-            <Meta title="NJUPT SAST" description="sast.njupt.edu.cn" />
+            {/* <Meta title="NJUPT SAST" description="sast.njupt.edu.cn" /> */}
           </Card>
         </Col>
         {/* 右侧为卡片，标题设置为问候语 */}
