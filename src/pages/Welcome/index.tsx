@@ -14,14 +14,14 @@ function onPanelChange(value, mode) {
   console.log(value, mode);
 }
 
-var d = new Date();
+const d = new Date();
 
-function greeting(hour) {     //为给定的时间配备问候语
-  var words;
+function greeting(hour) {     // 为给定的时间配备问候语
+  let words;
   if (hour <= 5 && hour > 3)
-    words = "凌晨好，起得真早呀";
+    words = "凌晨好，早起的鸟儿有虫吃";
   else if (hour > 5 && hour <= 10)
-    words = "早上好，一起学习吧";
+    words = "早上好，今天又是做水果蛋糕的好天气呢";
   else if (hour > 10 && hour <= 12)
     words = "中午好，注意午休哦";
   else if (hour > 12 && hour <= 18)
@@ -32,10 +32,10 @@ function greeting(hour) {     //为给定的时间配备问候语
   return words
 }
 
-const contentStyle = {/*跑马灯格式 */
+const contentStyle = {/* 跑马灯格式 */
   height: '300px',
   color: '#fff',
-  lineHeight: '200px',  //内嵌字符height
+  lineHeight: '200px',  // 内嵌字符height
   textAlign: 'center',
   background: '#364d79',
 };
@@ -50,18 +50,18 @@ export default (): React.ReactNode => {
     <PageContainer>
 
       <Row>
-        <Col span={5} push={19}>{/*宽度为5，向右移动19，左侧栅格*/}
+        <Col span={5} push={19}>{/* 宽度为5，向右移动19，左侧栅格 */}
 
           <div className="site-card-border-less-wrapper">//
-            <Card title={greeting(d.getHours())} bordered={false} >{/*右侧为卡片，标题设置为问候语 */}{/*标题格式可稍加修改*/}
+            <Card title={greeting(d.getHours())} bordered={false} >{/* 右侧为卡片，标题设置为问候语 */}{/* 标题格式可稍加修改 */}
               <div className="site-calendar-demo-card">
-                <Calendar fullscreen={false} onPanelChange={onPanelChange} />{/*右侧卡片的内容部分使用日历组件  */}
+                <Calendar fullscreen={false} onPanelChange={onPanelChange} />{/* 右侧卡片的内容部分使用日历组件  */}
               </div>,
             </Card>
           </div>,
         </Col>
-        <Col span={18} pull={5}>{/*宽度18，向左移动5，右侧栅格*/}
-          <Card hoverable bordered={false}>{/**左侧为跑马灯 */}
+        <Col span={18} pull={5}>{/* 宽度18，向左移动5，右侧栅格 */}
+          <Card hoverable bordered={false}>{/** 左侧为跑马灯 */}
             <Carousel autoplay>
               <div>
                 <h3 style={contentStyle}>PicLink1</h3>
