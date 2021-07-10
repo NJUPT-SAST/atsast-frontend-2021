@@ -22,10 +22,10 @@
     component: './Welcome',
   },
   {
-    path: '/activity',
-    name: '活动',
+    path: '/competition',
+    name: '比赛',
     icon: 'flag',
-    component: './Activity',
+    component: './Competition',
   },
   {
     path: '/lecture',
