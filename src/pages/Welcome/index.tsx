@@ -13,9 +13,9 @@ function greeting(hour: number) {
   if (hour >= 23 || hour <= 3)
     words = "深夜了，不要熬夜太晚哦";
   else if (hour <= 5)
-    words = "凌晨好，起得真早呀";
+    words = "凌晨好，早起的鸟儿有虫吃";
   else if (hour <= 10)
-    words = "早上好，一起学习吧";
+    words = "早上好，今天又是做水果蛋糕的好天气呢";
   else if (hour <= 12)
     words = "中午好，注意午休哦";
   else if (hour <= 14)

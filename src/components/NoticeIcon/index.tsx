@@ -122,25 +122,17 @@ const NoticeIconView = () => {
       clearClose
     >
       <NoticeIcon.Tab
-        tabKey="notification"
-        count={unreadMsg.notification}
-        list={noticeData.notification}
-        title="通知"
-        emptyText="你已查看所有通知"
-        showViewMore
-      />
-      <NoticeIcon.Tab
         tabKey="message"
         count={unreadMsg.message}
         list={noticeData.message}
-        title="消息"
+        title="站内消息"
         emptyText="您已读完所有消息"
         showViewMore
       />
       <NoticeIcon.Tab
         tabKey="event"
-        title="待办"
-        emptyText="你已完成所有待办"
+        title="比赛信息"
+        emptyText="没有比赛相关的信息"
         count={unreadMsg.event}
         list={noticeData.event}
         showViewMore
