@@ -22,6 +22,18 @@
     component: './Welcome',
   },
   {
+    path: '/competition',
+    name: '比赛',
+    icon: 'flag',
+    component: './Competition',
+  },
+  {
+    path: '/lecture',
+    name: '授课',
+    icon: 'bulb',
+    component: './Lecture',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',

@@ -18,7 +18,7 @@ const text_style = {
 
 export default () => (
     <div style={box_style} >
-        <Row justify="center" align="top" wrap gutter={ [0,16]}>
+        <Row justify="center" align="top" wrap gutter={ [0,12]}>
             <Col span="12" offset="2">
                 <div style={text_style}>
                     Igniting the Thought！
@@ -41,10 +41,12 @@ export default () => (
                     </span>
                 </div>
                 <div style={text_style}>
-                    <MailOutlined />
-                    <span style={text_style}>
-                      Mail to us
-                    </span>
+                    <a href="mailto:sast@njupt.edu.cn">
+                        <MailOutlined />
+                        <span style={text_style}>
+                        Mail to us
+                        </span>
+                    </a>
                 </div>
                 <div style={text_style} >
                     <a href="https://github.com/NJUPT-SAST-Technology-Center">
@@ -57,7 +59,7 @@ export default () => (
                 <div style={text_style} >
                     <QqOutlined />
                     <span style={text_style}>
-                      QQ:2595331904
+                      QQ 2595331904
                     </span>
                 </div>
              
