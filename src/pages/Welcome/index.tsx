@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Carousel, Row, Col, Calendar, Typography } from 'antd';
-import Avatar from './AvatarDropdown';
+import UserName from './UserName';
 
 // 获取当前日期
 const nowDate = new Date();
@@ -50,7 +50,7 @@ export default (): React.ReactNode => {
         <Col span={3}></Col>
         <Col span={12}>
           <Card hoverable>
-            <Typography.Title level={4}>J-六边形战士-C<Avatar />，{greeting(nowDate.getHours())}</Typography.Title>
+            <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
           <Row style={rowHeightStyle}></Row>
           <Card
