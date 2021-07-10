@@ -4,9 +4,8 @@ import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typo
 import { useIntl, FormattedMessage } from 'umi';
 import { AudioOutlined } from '@ant-design/icons';
 import { SelectProps } from 'antd/es/select';
-import debounce from 'lodash/debounce';
 
-//搜索栏相关
+// 搜索栏相关
 const { Search } = Input;
 
 const suffix = (
@@ -26,7 +25,7 @@ export interface DebounceSelectProps<ValueType = any>
   debounceTimeout?: number;
 }
 
-//标签选择相关
+// 标签选择相关
 const { Title } = Typography;
 
 const options = [];
@@ -42,16 +41,15 @@ function handleChange(value) {
   console.log(`selected ${value}`);
 }
 
-//日期选择相关
+// 日期选择相关
 const { RangePicker } = DatePicker;
 
-//底部翻页相关
+// 底部翻页相关
 function onChange(pageNumber) {
   console.log('Page: ', pageNumber);
 }
 
 export default (): React.ReactNode => {
-  const intl = useIntl();
   return (
     <PageContainer>
       <Card>
