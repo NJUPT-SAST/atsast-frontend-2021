@@ -1,7 +1,8 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Typography, Divider, Tag, Steps, Button, Space} from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
+import { Card, Typography, Tag, Steps, Button, Space} from 'antd';
+
+const { Title } = Typography;
 const { Step } = Steps;
 
 const tagsData = ['校科协', '计软网安院科协',];
@@ -12,6 +13,8 @@ const StepData = [
   ['比赛结束'],
   ['123'],
   ['12345']];
+
+/* eslint max-classes-per-file: ["error", 2] */
 class Units extends React.Component {
   render() {
     return (
