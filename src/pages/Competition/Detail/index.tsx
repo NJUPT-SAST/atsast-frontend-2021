@@ -54,7 +54,7 @@ export default (): React.ReactNode => {
             <Button type="primary" href="/welcome" target="_top" >我的状态</Button>
           </Space>
         </Card>
-        <Card>
+        <Card bordered={false}>
           <Title level={2}>比赛简介</Title>
           //富文本
         </Card>

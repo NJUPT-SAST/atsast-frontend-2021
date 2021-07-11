@@ -5,7 +5,7 @@ import UserName from './UserName';
 
 // 获取当前日期
 const nowDate = new Date();
-const { Meta } = Card;
+// const { Meta } = Card;
 
 // 为给定的时间配备问候语
 function greeting(hour: number) {
