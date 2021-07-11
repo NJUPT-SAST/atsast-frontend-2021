@@ -1,12 +1,24 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography } from 'antd';
+import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography, Carousel, Collapse, Col, Row } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd/es/select';
 import type { OptionsType } from 'rc-select/lib/interface';
 
+// 跑马灯格式
+const contentStyle = {
+  height: '450px',
+  color: '#fff',
+  lineHeight: '450px',  // 内嵌字符height
+  textAlign: 'center',
+  background: '#364d79'
+};
+
 // 搜索栏相关
 const { Search } = Input;
+
+// 折叠菜单相关
+const { Panel } = Collapse;
 
 const suffix = (
   <AudioOutlined
@@ -69,49 +81,78 @@ const rowHeightStyle = {
 export default (): React.ReactNode => {
   return (
     <PageContainer>
-      <Card>
-        <Space direction="horizontal">
-          <text>搜索：</text>
-          <Search
-            placeholder="input search text"
-            allowClear
-            enterButton="Search"
-            size="middle"
-            onSearch={onSearch}
-          />
-        </Space>
-      </Card>
-      <Card>
-        <text>所属类目：</text>
-        <Radio.Group defaultValue="a" size="middle">
-          <Radio.Button value="a">Hangzhou</Radio.Button>
-          <Radio.Button value="b">Shanghai</Radio.Button>
-          <Radio.Button value="c">Beijing</Radio.Button>
-          <Radio.Button value="d">Chengdu</Radio.Button>
-        </Radio.Group>
-      </Card>
-      <Card>
-        <text>主办方：</text>
-        <Select
-          mode="multiple"
-          style={{ width: '75%' }}
-          placeholder="Please select"
-          defaultValue={[]}
-          onChange={handleChange}
-          options={options}
-        />
-      </Card>   
-      <Card>
-        <text>赛程：</text>
-        <App />
-      </Card>
-      <Card>
-        <text>时间范围：</text>
-        <RangePicker />
-        <Button type="link">不看已结束的</Button>
-      </Card>
-      <br />
-      <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+      <Row gutter={16}>
+        <Col span={2}></Col>
+        <Col span={15}>
+          <Carousel autoplay>
+            <div>
+              <h3 style={contentStyle}>PicLink1</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>PicLink2</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>Picklink3</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>Piclink4</h3>
+            </div>
+          </Carousel>
+          <Card>
+            <Space direction="horizontal">
+              <text>搜索：</text>
+              <Search
+                placeholder="input search text"
+                allowClear
+                enterButton="Search"
+                size="middle"
+                onSearch={onSearch}
+              />
+            </Space>
+          </Card>
+          <Collapse ghost>
+            <Panel header="筛选" key="1">
+              <Card>
+                <text>所属类目：</text>
+                <Radio.Group defaultValue="a" size="middle">
+                  <Radio.Button value="a">Hangzhou</Radio.Button>
+                  <Radio.Button value="b">Shanghai</Radio.Button>
+                  <Radio.Button value="c">Beijing</Radio.Button>
+                  <Radio.Button value="d">Chengdu</Radio.Button>
+                </Radio.Group>
+              </Card>
+              <Card>
+                <text>主办方：</text>
+                <Select
+                  mode="multiple"
+                  style={{ width: '30%' }}
+                  placeholder="Please select"
+                  defaultValue={[]}
+                  onChange={handleChange}
+                  options={options}
+                />
+              </Card>   
+              <Card>
+                <text>赛程：</text>
+                <App />
+              </Card>
+              <Card>
+                <text>时间范围：</text>
+                <RangePicker />
+                <Button type="link">不看已结束的</Button>
+              </Card>
+            </Panel>
+          </Collapse>
+          <br />
+          <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+        </Col>
+        <Col span={5}>
+          <Card>
+            User Information
+          </Card>
+        </Col>
+        <Col span={2}></Col>
+      </Row>
     </PageContainer>
   );
 };

@@ -5,6 +5,8 @@ import UserName from './UserName';
 
 // 获取当前日期
 const nowDate = new Date();
+
+// 卡片底部Meta元素
 // const { Meta } = Card;
 
 // 为给定的时间配备问候语
@@ -31,9 +33,9 @@ function greeting(hour: number) {
 
 /* 跑马灯格式 */
 const contentStyle = {
-  height: '300px',
+  height: '450px',
   color: '#fff',
-  lineHeight: '300px',  // 内嵌字符height
+  lineHeight: '450px',  // 内嵌字符height
   textAlign: 'center',
   background: '#364d79'
 };
@@ -47,38 +49,30 @@ export default (): React.ReactNode => {
   return (
     <PageContainer>
       <Row gutter={16}>
-        <Col span={3}></Col>
-        <Col span={12}>
-          <Card hoverable>
+        <Col span={2}></Col>
+        <Col span={14}>
+          <Card>
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
-          <Row style={rowHeightStyle}></Row>
-          <Card
-            hoverable
-            bordered={false}
-            cover={
-              <Carousel autoplay>
-                <div>
-                  <h3 style={contentStyle}>PicLink1</h3>
-                </div>
-                <div>
-                  <h3 style={contentStyle}>PicLink2</h3>
-                </div>
-                <div>
-                  <h3 style={contentStyle}>Picklink3</h3>
-                </div>
-                <div>
-                  <h3 style={contentStyle}>Piclink4</h3>
-                </div>
-              </Carousel>
-            }
-          >
-            {/* <Meta title="NJUPT SAST" description="sast.njupt.edu.cn" /> */}
-          </Card>
+          <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
+            <Carousel autoplay>
+              <div>
+                <h3 style={contentStyle}>PicLink1</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>PicLink2</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>Picklink3</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle}>Piclink4</h3>
+              </div>
+            </Carousel>
         </Col>
         {/* 右侧为卡片，标题设置为问候语 */}
         <Col span={6}>
-          <Card hoverable bordered={false}>
+          <Card bordered={false}>
             <Calendar
               fullscreen={false}
               // disabledDate={()=>{return true}}
@@ -92,7 +86,7 @@ export default (): React.ReactNode => {
             />
           </Card>
         </Col>
-        <Col span={3}></Col>
+        <Col span={2}></Col>
       </Row>
     </PageContainer>
   );
