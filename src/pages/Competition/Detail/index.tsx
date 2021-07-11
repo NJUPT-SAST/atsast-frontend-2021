@@ -25,15 +25,14 @@ export default (): React.ReactNode => {
       <Card>
         <Title>蓝桥杯程序设计大赛</Title>
         <Units />
-        <Card>
+        <Card bordered={false}>
           <Steps current={1}>
             <Step title="报名时间" description="2021.7.1-2021.7.5" />
-            <Step title="比赛时间" description="2021.7.10
-            11.45.14-19.19.00" />
+            <Step title="比赛时间" description="2021.8.10 11.45.14-19.19.00" />
             <Step title="比赛结束" description="" />
           </Steps>
         </Card>
-        <Card>
+        <Card bordered={false}>
           <Title level={2}>比赛简介</Title>
           //富文本
         </Card>
