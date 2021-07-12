@@ -34,6 +34,12 @@
     component: './Lecture',
   },
   {
+    path: '/personalInformation',
+    name: '个人信息',
+    icon: 'bulb',
+    component: './PersonalInformation',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
