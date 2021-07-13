@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Carousel, Row, Col, Calendar, Typography } from 'antd';
+import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form } from 'antd';
 import UserName from './UserName';
 
 // 获取当前日期
 const nowDate = new Date();
+
+//表单查找好友
+
+const onFinish = (values: any) => {
+  console.log('Success:', values);
+};
+
+const onFinishFailed = (errorInfo: any) => {
+  console.log('Failed:', errorInfo);
+};
+
+
 
 // 卡片底部Meta元素
 // const { Meta } = Card;
@@ -22,7 +34,7 @@ function greeting(hour: number) {
     words = "中午好，注意午休哦";
   else if (hour <= 14)
     words = "下午好，继续加油吧";
-  else if (hour <= 15 )
+  else if (hour <= 15)
     words = "三点几嚟，饮茶先啦";
   else if (hour <= 18)
     words = "下午好，继续加油吧";
@@ -31,7 +43,7 @@ function greeting(hour: number) {
   return words
 }
 
-/* 跑马灯格式 */
+/* 跑马灯文本格式 */
 const contentStyle = {
   height: '450px',
   color: '#fff',
@@ -46,32 +58,78 @@ const rowHeightStyle = {
 }
 
 export default (): React.ReactNode => {
+  //组队对话框相关
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <PageContainer>
       <Row gutter={16}>
         <Col span={2}></Col>
         <Col span={14}>
-          <Card>
+          <Card >
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
+
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
-            <Carousel autoplay>
-              <div>
-                <h3 style={contentStyle}>PicLink1</h3>
-              </div>
-              <div>
-                <h3 style={contentStyle}>PicLink2</h3>
-              </div>
-              <div>
-                <h3 style={contentStyle}>Picklink3</h3>
-              </div>
-              <div>
-                <h3 style={contentStyle}>Piclink4</h3>
-              </div>
-            </Carousel>
+          <Carousel autoplay>
+            <div>
+              <h3 style={contentStyle}>PicLink1</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>PicLink2</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>Picklink3</h3>
+            </div>
+            <div>
+              <h3 style={contentStyle}>Piclink4</h3>
+            </div>
+          </Carousel>
         </Col>
-        {/* 右侧为卡片，标题设置为问候语 */}
         <Col span={6}>
+          <Button type="primary" onClick={showModal}>
+            邀请队友一起组队吧
+          </Button>
+          <Modal title="队友邀请" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+           
+            <Form
+              name="basic"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              initialValues={{ remember: true }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+            >
+              <Form.Item
+                label="学号"
+                name="username"
+                rules={[{ required: true, message: '请输入学号' }]}
+              >
+                <Input placeholder="例如：B20010101" />
+              </Form.Item>
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit" >
+                  邀请
+                </Button>
+              </Form.Item>
+            </Form>
+
+
+          </Modal>
+          <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
+
+        {/* 右侧为卡片,显示日历*/}
           <Card bordered={false}>
             <Calendar
               fullscreen={false}
@@ -79,10 +137,10 @@ export default (): React.ReactNode => {
               headerRender={() => {
                 return (
                   <div style={{ padding: 8 }}>
-                    <Typography.Title level={4}>{nowDate.getFullYear()}年{nowDate.getMonth()+1}月{nowDate.getDate()}日</Typography.Title>
+                    <Typography.Title level={4}>{nowDate.getFullYear()}年{nowDate.getMonth() + 1}月{nowDate.getDate()}日</Typography.Title>
                   </div>
                 );
-                }}
+              }}
             />
           </Card>
         </Col>
