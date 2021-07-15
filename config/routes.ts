@@ -44,13 +44,22 @@
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
-    component: './Admin',
     routes: [
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
+        path: '/admin/dash-board',
+        name: '仪表盘',
+        icon: 'dashboard',
+        component: './Administrator/DashBoard',
+      },{
+        path: '/admin/create-competition',
+        name: '创建比赛',
+        icon: 'form',
+        component: './Administrator/CreateCompetition',
+      },{
+        path: '/admin/competition-list',
+        name: '比赛列表',
+        icon: 'ordered-list',
+        component: './Administrator/CompetitionList',
       },
     ],
   },

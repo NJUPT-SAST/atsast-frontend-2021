@@ -110,41 +110,44 @@ export default (): React.ReactNode => {
               />
             </Space>
           </Card>
-          <Collapse ghost>
-            <Panel header="筛选" key="1">
-              <Card>
-                <text>所属类目：</text>
-                <Radio.Group defaultValue="a" size="middle">
-                  <Radio.Button value="a">Hangzhou</Radio.Button>
-                  <Radio.Button value="b">Shanghai</Radio.Button>
-                  <Radio.Button value="c">Beijing</Radio.Button>
-                  <Radio.Button value="d">Chengdu</Radio.Button>
-                </Radio.Group>
-              </Card>
-              <Card>
-                <text>主办方：</text>
-                <Select
-                  mode="multiple"
-                  style={{ width: '30%' }}
-                  placeholder="Please select"
-                  defaultValue={[]}
-                  onChange={handleChange}
-                  options={options}
-                />
-              </Card>   
-              <Card>
-                <text>赛程：</text>
-                <App />
-              </Card>
-              <Card>
-                <text>时间范围：</text>
-                <RangePicker />
-                <Button type="link">不看已结束的</Button>
-              </Card>
-            </Panel>
-          </Collapse>
-          <br />
-          <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+          <Card>
+            <Collapse ghost>
+              <Panel header="筛选" key="1">
+                <Card>
+                  <text>所属类目：</text>
+                  <Radio.Group defaultValue="a" size="middle">
+                    <Radio.Button value="a">Hangzhou</Radio.Button>
+                    <Radio.Button value="b">Shanghai</Radio.Button>
+                    <Radio.Button value="c">Beijing</Radio.Button>
+                    <Radio.Button value="d">Chengdu</Radio.Button>
+                  </Radio.Group>
+                </Card>
+                <Card>
+                  <text>主办方：</text>
+                  <Select
+                    mode="multiple"
+                    style={{ width: '30%' }}
+                    placeholder="Please select"
+                    defaultValue={[]}
+                    onChange={handleChange}
+                    options={options}
+                  />
+                </Card>
+                <Card>
+                  <text>赛程：</text>
+                  <App />
+                </Card>
+                <Card>
+                  <text>时间范围：</text>
+                  <RangePicker />
+                  <Button type="link">不看已结束的</Button>
+                </Card>
+              </Panel>
+            </Collapse>
+          </Card>
+          <Card>
+            <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+          </Card>
         </Col>
         <Col span={5}>
           <Card>

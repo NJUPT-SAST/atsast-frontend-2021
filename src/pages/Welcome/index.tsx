@@ -114,6 +114,7 @@ export default (): React.ReactNode => {
               <Form.Item
                 label="学号"
                 name="username"
+                wrapperCol={{ offset: 0, span: 8 }}
                 rules={[{ required: true, message: '请输入学号' }]}
               >
                 <Input placeholder="例如：B20010101" />
