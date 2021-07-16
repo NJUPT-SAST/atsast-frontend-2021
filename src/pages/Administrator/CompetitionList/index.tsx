@@ -1,8 +1,8 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button,Radio } from 'antd';
+import { Typography, Row, Col, Card, Button, Radio } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 const { Title, Paragraph, Text, Link } = Typography;
-
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 const gridStyle = {
   width: '400px',
   height: '200px',
@@ -20,10 +20,10 @@ class ComCard extends React.Component {
             <Title level={3}>
               xx比赛
             </Title>
-                <Button>修改</Button>
-                <Button>状态</Button>
-                <Button>评委</Button>
-                <Button>结束</Button>
+            <Button href="">修改</Button>
+            <Button href="">状态</Button>
+            <Button href="/admin/competition-list/judge-management">评委</Button>
+            <Button href="">结束</Button>
           </Typography>
         </Card.Grid>
       </>
@@ -32,8 +32,7 @@ class ComCard extends React.Component {
 }
 function CompetitionList() {
   return (
-    <Typography>
-      <Title>比赛列表</Title>
+    <PageHeaderWrapper title={<Title level={2}>比赛列表</Title>}>
       <Card>
         <ComCard />
         <ComCard />
@@ -48,7 +47,7 @@ function CompetitionList() {
           </a>
         </Card.Grid>
       </Card>
-    </Typography>
+    </PageHeaderWrapper>
   );
 }
 

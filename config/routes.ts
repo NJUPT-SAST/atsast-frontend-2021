@@ -50,16 +50,22 @@
         name: '仪表盘',
         icon: 'dashboard',
         component: './Administrator/DashBoard',
-      },{
+      },
+      {
         path: '/admin/create-competition',
         name: '创建比赛',
         icon: 'form',
         component: './Administrator/CreateCompetition',
-      },{
+      },
+      {
         path: '/admin/competition-list',
         name: '比赛列表',
         icon: 'ordered-list',
         component: './Administrator/CompetitionList',
+      },
+      {
+        path: '/admin/competition-list/judge-management',
+        component: './Administrator/CompetitionList/JudgeManagement',
       },
     ],
   },
@@ -73,6 +79,7 @@
     path: '/competition/detail',
     component: './Competition/Detail',
   },
+
   {
     path: '/',
     redirect: '/welcome',

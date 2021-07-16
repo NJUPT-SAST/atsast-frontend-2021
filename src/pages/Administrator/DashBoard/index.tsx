@@ -1,4 +1,7 @@
 import React from 'react';
+import { Typography,  } from 'antd';
+const { Title, Paragraph, Text, Link } = Typography;
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 
 // eslint-disable-next-line spaced-comment
@@ -6,9 +9,8 @@ import React from 'react';
 
 function AdminInformation() {
   return (
-    <div>
-      AdminInformation
-    </div>
+    <PageHeaderWrapper title={<Title level={2}>仪表盘</Title>}>
+    </PageHeaderWrapper>
   );
 }
 
