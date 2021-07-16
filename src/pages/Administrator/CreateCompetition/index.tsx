@@ -9,6 +9,7 @@ import { Divider } from 'antd';
 import  { useState } from 'react';
 import styles from './index.less'
 /*比赛流程-多元复合 */
+import { DatePicker} from 'antd';
 import { Space } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
@@ -156,7 +157,7 @@ const Demo1 = () => {
   const onFinish = values => {
     console.log('Received values of form:', values);
   };
-
+const { RangePicker } = DatePicker;
   return (
     <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
       <Form.List name="users">
@@ -168,17 +169,14 @@ const Demo1 = () => {
                   {...restField}
                   name={[name, 'first']}
                   fieldKey={[fieldKey, 'first']}
-                  rules={[{ required: true, message: 'Missing first name' }]}
+                  rules={[{ required: true, message: '设定比赛流程初' }]}
                 >
-                  <Input placeholder="First Name" />
+                  <Input placeholder="设定比赛流程" />
                 </Form.Item>
                 <Form.Item
-                  {...restField}
-                  name={[name, 'last']}
-                  fieldKey={[fieldKey, 'last']}
-                  rules={[{ required: true, message: 'Missing last name' }]}
+                  
                 >
-                  <Input placeholder="Last Name" />
+                  <RangePicker showTime />
                 </Form.Item>
                 <MinusCircleOutlined onClick={() => remove(name)} />
               </Space>

@@ -58,6 +58,12 @@
         component: './Administrator/CreateCompetition',
       },
       {
+        path: '/admin/competition-state',
+        name: '比赛状态',
+        icon: 'form',
+        component: './Administrator/CompetitionState',
+      },
+      {
         path: '/admin/competition-list',
         name: '比赛列表',
         icon: 'ordered-list',
