@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import { Form, Input, Button, Row } from 'antd';
 /**/import { Card } from 'antd';
 import Col from 'antd/es/grid/col';
