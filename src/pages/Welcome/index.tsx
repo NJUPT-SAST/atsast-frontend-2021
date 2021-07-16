@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form } from 'antd';
+import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
 import UserName from './UserName';
+import { Link } from 'umi';
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 // 获取当前日期
 const nowDate = new Date();
@@ -56,6 +58,15 @@ const contentStyle = {
 const rowHeightStyle = {
   height: '16px'
 }
+/**“最新活动” 中内嵌卡片样式*/
+const gridStyle = {
+  width: '33.3%',
+  textAlign: 'center',
+};
+const { Meta } = Card;
+
+
+
 
 export default (): React.ReactNode => {
   //组队对话框相关
@@ -96,13 +107,41 @@ export default (): React.ReactNode => {
               <h3 style={contentStyle}>Piclink4</h3>
             </div>
           </Carousel>
+          <div className="nearestAct">
+            <Card title="最新活动" bordered={false} extra={<a href="#">更多活动</a>}>
+              <Card.Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Card.Grid>
+              <Card.Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Card.Grid>
+              <Card.Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Card.Grid>
+            </Card>
+          </div>
         </Col>
         <Col span={6}>
-          <Button type="primary" onClick={showModal}>
-            邀请队友一起组队吧
-          </Button>
+          <div className="site-card-border-less-wrapper">
+            <Card title="快速开始" bordered={false}  extra={<a href="#">添加</a>}>
+              <Button type="link">快速组队</Button><br></br>
+              <Button type="link">查看比赛信息</Button><br></br>
+              <Button type="link">查看队伍信息</Button><br></br>
+            </Card>
+          </div>,
+
+
           <Modal title="队友邀请" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-           
+
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -130,7 +169,7 @@ export default (): React.ReactNode => {
           </Modal>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
 
-        {/* 右侧为卡片,显示日历*/}
+          {/* 右侧为卡片,显示日历*/}
           <Card bordered={false}>
             <Calendar
               fullscreen={false}
@@ -145,7 +184,6 @@ export default (): React.ReactNode => {
             />
           </Card>
         </Col>
-        <Col span={2}></Col>
       </Row>
     </PageContainer>
   );
