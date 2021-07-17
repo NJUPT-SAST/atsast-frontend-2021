@@ -1,39 +1,36 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
+import { Typography, Row, Card, Space, Button, Table, Breadcrumb, PageHeader } from 'antd';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const columns = [
   {
-    title: '姓名',
-    dataIndex: 'name',
+    title: '作品类别',
+    dataIndex: 'workCategory',
   },
   {
-    title: '学院',
-    dataIndex: 'college',
+    title: '作品名称',
+    dataIndex: 'workName',
   },
   {
-    title: '评审进度',
-    dataIndex: 'progress',
-    sorter: (a, b) => (a.a/a.b) - (b.a/b.b),
+    title: '学科类别',
+    dataIndex: 'subjectCategory',
   },
   {
-    title: '状态',
+    title: '材料提交',
     dataIndex: 'state',
     filters: [
       {
-        text: '已完成',
-        value: '已完成',
+        text: '已提交',
+        value: '已提交',
       },
       {
         text: '评审中',
         value: '评审中',
       },
       {
-        text: '未开始',
-        value: '未开始',
+        text: '未提交',
+        value: '未提交',
       },
       {
         text: '已关闭',
@@ -43,19 +40,12 @@ const columns = [
     onFilter: (value, record) => record.state.indexOf(value) === 0,
   },
   {
-    title: '工号',
-    dataIndex: 'id',
+    title: '第一作者学号',
+    dataIndex: 'schoolNumber',
   },
   {
-    title: '操作',
-    dataIndex: 'action',
-    render: () => (
-      <Space size="middle">
-        <a>授权</a>
-        |
-        <a>删除</a>
-      </Space>
-    ),
+    title: '组别',
+    dataIndex: 'constituencies',
   },
 ];
 
@@ -63,13 +53,12 @@ const data = [];
 for (let i = 0; i < 46; i++) {
   data.push({
     key: i,
-    name: `Edward King ${i}`,
-    college: 'huangx英才学院',
-    a: `${i+1}`,
-    b: `${i+5}`,
-    progress: `${i+1}/${i+5}`,
+    workCategory: `智能科学与技术 ${i}`,
+    workName: 'PiCpo，yyds!',
+    subjectCategory: '理科',
     state: '评审中',
-    id: `${20030101+i}`,
+    schoolNumber: `B${20040101 + i}`,
+    constituencies: '本科组',
   });
 }
 
@@ -77,7 +66,7 @@ class App extends React.Component {
   state = {
     selectedRowKeys: [], // Check here to configure the default column
   };
-  onSelectChange = selectedRowKeys => {
+  onSelectChange = (selectedRowKeys) => {
     // eslint-disable-next-line no-console
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
@@ -87,15 +76,16 @@ class App extends React.Component {
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
-      selections: [
-        Table.SELECTION_ALL,
-        Table.SELECTION_INVERT,
-        Table.SELECTION_NONE,
-      ],
+      selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT, Table.SELECTION_NONE],
     };
     return <Table rowSelection={rowSelection} columns={columns} dataSource={data} />;
   }
 }
+
+/* Row间Height（通用） */
+const rowHeightStyle = {
+  height: '16px',
+};
 
 function JudgeManagement() {
   return (
@@ -114,32 +104,18 @@ function JudgeManagement() {
           <a href="/admin/competition-list/judge-management/judge-authorization">评委授权</a>
         </Breadcrumb.Item>
       </Breadcrumb>
-      <PageHeader
-        className="site-page-header"
-        title="评委授权"
-        subTitle="评委授权页面"
-      />
+      <PageHeader className="site-page-header" title="评委授权" subTitle="评委授权页面" />
       <Card>
         <Row>
-          <Col span={15}>
-            <Text type="secondary">评委名单</Text>
-          </Col>
-          <Col span={9}>
-            <Space  size={'middle'}>
-              <Button type="primary">勾选评审材料</Button>
-              <Upload>
-                <Button>
-                  <UploadOutlined /> 导入
-                </Button>
-              </Upload>
-              <Button type="primary">
-                <PlusOutlined /> 新建
-              </Button>
-              <Popconfirm title="你确定要删除吗？" okText="是" cancelText="否">
-                <Button type="primary" danger>删除选中</Button>
-              </Popconfirm>
-            </Space>
-          </Col>
+          <Text type="secondary">评委名单</Text>
+        </Row>
+        <Row style={rowHeightStyle}></Row>
+        <Row>
+          <Space size={'middle'}>
+            <Text strong>一键勾选：</Text>
+            <Button type="primary">自然科学类学术论文</Button>
+            <Button type="primary">哲学社会科学类社会调查报告和学术论文</Button>
+          </Space>
         </Row>
         <br />
         <App />

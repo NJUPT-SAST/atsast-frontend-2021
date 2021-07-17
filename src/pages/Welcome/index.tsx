@@ -2,26 +2,23 @@ import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
 import UserName from './UserName';
-import { Link } from 'umi';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 // 获取当前日期
 const nowDate = new Date();
 
-//表单查找好友
-
+// 表单查找好友
 const onFinish = (values: any) => {
+  // eslint-disable-next-line no-console
   console.log('Success:', values);
 };
 
 const onFinishFailed = (errorInfo: any) => {
+  // eslint-disable-next-line no-console
   console.log('Failed:', errorInfo);
 };
 
-
-
 // 卡片底部Meta元素
-// const { Meta } = Card;
+const { Meta } = Card;
 
 // 为给定的时间配备问候语
 function greeting(hour: number) {
@@ -58,28 +55,18 @@ const contentStyle = {
 const rowHeightStyle = {
   height: '16px'
 }
-/**“最新活动” 中内嵌卡片样式*/
+/* “最新活动” 中内嵌卡片样式 */
 const gridStyle = {
   width: '33.3%',
   textAlign: 'center',
 };
-const { Meta } = Card;
 
-
-
-
+// 组队对话框相关
 export default (): React.ReactNode => {
-  //组队对话框相关
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
   const handleOk = () => {
     setIsModalVisible(false);
   };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -90,7 +77,6 @@ export default (): React.ReactNode => {
         <Col span={14}>
           <Card >
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
-
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
           <Carousel autoplay>
@@ -169,7 +155,7 @@ export default (): React.ReactNode => {
           </Modal>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
 
-          {/* 右侧为卡片,显示日历*/}
+          {/* 右侧为卡片,显示日历 */}
           <Card bordered={false}>
             <Calendar
               fullscreen={false}

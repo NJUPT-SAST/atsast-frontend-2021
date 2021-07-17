@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
+
+const { Text } = Typography;
 
 const columns = [
   {
@@ -48,7 +48,7 @@ const columns = [
   {
     title: '操作',
     dataIndex: 'action',
-    render: (text, record) => (
+    render: () => (
       <Space size="middle">
         <a href="/admin/competition-list/judge-management/judge-authorization">授权</a>
         |
@@ -77,6 +77,7 @@ class App extends React.Component {
     selectedRowKeys: [], // Check here to configure the default column
   };
   onSelectChange = selectedRowKeys => {
+    // eslint-disable-next-line no-console
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
@@ -120,7 +121,7 @@ function JudgeManagement() {
             <Text type="secondary">评委名单</Text>
           </Col>
           <Col span={9}>
-            <Space  size={'middle'}>
+            <Space size={'middle'}>
               <Button type="primary">勾选评审材料</Button>
               <Upload>
                 <Button>
