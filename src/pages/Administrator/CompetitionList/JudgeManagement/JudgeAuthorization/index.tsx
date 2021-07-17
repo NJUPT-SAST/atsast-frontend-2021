@@ -1,8 +1,9 @@
 import React from 'react';
 import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
+
+const { Title, Text } = Typography;
 
 const columns = [
   {
@@ -48,9 +49,9 @@ const columns = [
   {
     title: '操作',
     dataIndex: 'action',
-    render: (text, record) => (
+    render: () => (
       <Space size="middle">
-        <a href="/admin/competition-list/judge-management/judge-authorization">授权</a>
+        <a>授权</a>
         |
         <a>删除</a>
       </Space>
@@ -77,6 +78,7 @@ class App extends React.Component {
     selectedRowKeys: [], // Check here to configure the default column
   };
   onSelectChange = selectedRowKeys => {
+    // eslint-disable-next-line no-console
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
@@ -108,11 +110,14 @@ function JudgeManagement() {
         <Breadcrumb.Item>
           <a href="/admin/competition-list/judge-management">评委管理</a>
         </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/judge-management/judge-authorization">评委授权</a>
+        </Breadcrumb.Item>
       </Breadcrumb>
       <PageHeader
         className="site-page-header"
-        title="评委管理"
-        subTitle="评委管理页面"
+        title="评委授权"
+        subTitle="评委授权页面"
       />
       <Card>
         <Row>

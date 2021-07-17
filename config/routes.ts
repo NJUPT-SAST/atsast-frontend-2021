@@ -72,6 +72,10 @@
         path: '/admin/competition-list/judge-management',
         component: './Administrator/CompetitionList/JudgeManagement',
       },
+      {
+        path: '/admin/competition-list/judge-management/judge-authorization',
+        component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
+      },
     ],
   },
   {

@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Typography, Row, Col, Card, Button, Radio, Space } from 'antd';
+=======
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader} from 'antd';
+>>>>>>> be8c6c199a3749a5da43bdfdf663ea0b720b61bb
 import { PlusOutlined } from '@ant-design/icons';
 const { Title, Paragraph, Text, Link } = Typography;
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -14,6 +18,7 @@ class ComCol extends React.Component {
   render() {
     return (
       <>
+<<<<<<< HEAD
         <Col xs={24} md={12} xl={8}>
           <Card style={CardStyle} hoverable
             actions={[
@@ -28,13 +33,37 @@ class ComCol extends React.Component {
             </Title>
           </Card>
         </Col>
+=======
+        <Card.Grid style={gridStyle}>
+          <Typography>
+            <Title level={3}>xx比赛</Title>
+            <Button href="">修改</Button>
+            <Button href="/admin/competition-list/competition-state">状态</Button>
+            <Button href="/admin/competition-list/judge-management">评委</Button>
+            <Button href="">结束</Button>
+          </Typography>
+        </Card.Grid>
+>>>>>>> be8c6c199a3749a5da43bdfdf663ea0b720b61bb
       </>
     );
   }
 }
 function CompetitionList() {
   return (
-    <PageHeaderWrapper title={<Title level={2}>比赛列表</Title>}>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/">比赛列表</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="比赛列表"
+        subTitle="比赛列表页面"
+      />
       <Card>
         <Row gutter={[36, 18]}>
           <ComCol />
@@ -56,7 +85,7 @@ function CompetitionList() {
           </Col>
         </Row>
       </Card>
-    </PageHeaderWrapper>
+    </div>
   );
 }
 
