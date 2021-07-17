@@ -70,8 +70,18 @@
         component: './Administrator/CompetitionList',
       },
       {
+        path: '/admin/competition-edit',
+        name: '比赛编辑',
+        icon: 'form',
+        component: './Administrator/CompetitionEdit',
+      },
+      {
         path: '/admin/competition-list/judge-management',
         component: './Administrator/CompetitionList/JudgeManagement',
+      },
+      {
+        path: '/admin/competition-list/judge-management/judge-authorization',
+        component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
       },
     ],
   },

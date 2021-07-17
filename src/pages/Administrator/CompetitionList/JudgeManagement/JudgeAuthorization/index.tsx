@@ -1,8 +1,9 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
+import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table} from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
+
+const { Title, Text } = Typography;
 
 const columns = [
   {
@@ -48,9 +49,9 @@ const columns = [
   {
     title: '操作',
     dataIndex: 'action',
-    render: (text, record) => (
+    render: () => (
       <Space size="middle">
-        <a href="/admin/competition-list/judge-management/judge-authorization">授权</a>
+        <a>授权</a>
         |
         <a>删除</a>
       </Space>
@@ -97,23 +98,7 @@ class App extends React.Component {
 
 function JudgeManagement() {
   return (
-    <div>
-      <Breadcrumb>
-        <Breadcrumb.Item>
-          <a>管理页</a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <a href="">比赛列表</a>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <a href="">评委管理</a>
-        </Breadcrumb.Item>
-      </Breadcrumb>
-      <PageHeader
-        className="site-page-header"
-        title="Title"
-        subTitle="This is a subtitle"
-      />
+    <PageHeaderWrapper title={<Title level={2}>评委授权</Title>}>
       <Card>
         <Row>
           <Col span={15}>
@@ -139,7 +124,7 @@ function JudgeManagement() {
         <br />
         <App />
       </Card>
-    </div>
+    </PageHeaderWrapper>
   );
 }
 
