@@ -57,12 +57,7 @@
         icon: 'form',
         component: './Administrator/CreateCompetition',
       },
-      {
-        path: '/admin/competition-state',
-        name: '比赛状态',
-        icon: 'form',
-        component: './Administrator/CompetitionState',
-      },
+
       {
         path: '/admin/competition-list',
         name: '比赛列表',
@@ -70,10 +65,8 @@
         component: './Administrator/CompetitionList',
       },
       {
-        path: '/admin/competition-edit',
-        name: '比赛编辑',
-        icon: 'form',
-        component: './Administrator/CompetitionEdit',
+        path: '/admin/competition-list/competition-state',
+        component: './Administrator/CompetitionList/CompetitionState',
       },
       {
         path: '/admin/competition-list/judge-management',

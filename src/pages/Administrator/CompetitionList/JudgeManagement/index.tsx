@@ -100,19 +100,19 @@ function JudgeManagement() {
     <div>
       <Breadcrumb>
         <Breadcrumb.Item>
-          <a>管理页</a>
+          <a href="/admin">管理页</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="">比赛列表</a>
+          <a href="/admin/competition-list/">比赛列表</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="">评委管理</a>
+          <a href="/admin/competition-list/judge-management">评委管理</a>
         </Breadcrumb.Item>
       </Breadcrumb>
       <PageHeader
         className="site-page-header"
-        title="Title"
-        subTitle="This is a subtitle"
+        title="评委管理"
+        subTitle="评委管理页面"
       />
       <Card>
         <Row>

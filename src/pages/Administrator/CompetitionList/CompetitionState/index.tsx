@@ -1,6 +1,6 @@
 import React from 'react';
 /* 以下是面包屑 */
-import { Breadcrumb, Col, Row, Space } from 'antd';
+import { Col, Row, Space } from 'antd';
 import { Divider } from 'antd';
 /* 以下是卡片 */
 import { Card } from 'antd';
@@ -10,13 +10,12 @@ import { Popover, Button } from 'antd';
 import { Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 /* 以下是富文本和状态栏 */
-import { Input } from 'antd';
-import { Drawer, Form,Select, DatePicker } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { MinusCircleOutlined } from '@ant-design/icons';
-import {  Radio } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import { Drawer, Form, Select, DatePicker, Input, Radio } from 'antd';
+import { MinusCircleOutlined, PlusOutlined, DownloadOutlined } from '@ant-design/icons';
 /* 以下是生成邀请链接-报名阶段 */
+import { Typography } from 'antd';
+const { Title, Paragraph, Text, Link } = Typography;
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 const content1 = (
   <div>
     <p>单个队员邀请链接</p>
@@ -91,7 +90,7 @@ class DrawerForm extends React.Component {
             </div>
           }
         >
-          <Form layout="vertical" hideRequiredMark>           
+          <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
               <Col span={24}>
                 <Form.Item
@@ -110,7 +109,7 @@ class DrawerForm extends React.Component {
             </Row>
             <Row >
               <Col span={24}>
-               <Demo />
+                <Demo />
               </Col>
             </Row>
           </Form>
@@ -179,23 +178,7 @@ const Demo = () => {
 /* 以下是返回显示页面 */
 function CompetitionState() {
   return (
-    <div>
-      <div className="breadcrumb">
-         <Breadcrumb>
-         <Breadcrumb.Item>Home</Breadcrumb.Item>
-         <Breadcrumb.Item>
-           <a href="">管理员</a>
-         </Breadcrumb.Item>
-         <Breadcrumb.Item>
-           <a href="">比赛状态</a>
-         </Breadcrumb.Item>
-         <Breadcrumb.Item>xxx比赛</Breadcrumb.Item>
-         <Breadcrumb.Item>比赛状态</Breadcrumb.Item>
-       </Breadcrumb>
-      </div>
-      <div>
-      <Divider orientation="left"><h1>比赛状态</h1></Divider>
-      </div>
+    <PageHeaderWrapper title={<Title level={2}>比赛状态</Title>}>
       {/* 报名阶段 */}
       <Card>
         <Row>
@@ -203,62 +186,63 @@ function CompetitionState() {
             <h2>报名阶段</h2>
           </Col>
           <Col span={4}>
-           <h4>公开报名</h4>
-           <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked />
-           <br />
+            <h4>公开报名</h4>
+            <Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked />
+            <br />
           </Col>
           <Col span={5}>
-          <Popover content={content1} >
-          <Button type="primary">生成邀请链接</Button>
-          </Popover>
+            <Popover content={content1} >
+              <Button type="primary">生成邀请链接</Button>
+            </Popover>
           </Col>
           <Col span={5}>
-          <Popover content={content2} >
-          <Button type="primary">生成签到表格</Button>
-          </Popover>
+            <Popover content={content2} >
+              <Button type="primary">生成签到表格</Button>
+            </Popover>
           </Col>
           <Col>
-          <Upload {...props}>
-          <Button icon={<UploadOutlined />}>导入Excel表格</Button>
-          </Upload>
+            <Upload {...props}>
+              <Button icon={<UploadOutlined />}>导入Excel表格</Button>
+            </Upload>
           </Col>
         </Row>
       </Card>
       {/* 状态1的富文本打算用抽屉写一下 */}
       <Card>
         <Row>
-        <h2>比赛状态</h2>
-        <TextArea rows={6} />
-        <DrawerForm />
+          <h2>比赛状态</h2>
+          <TextArea rows={6} />
+          <DrawerForm />
         </Row>
         <Row>
 
         </Row>
       </Card>
-        {/* 状态2的富文本打算用抽屉写一下增删，但是这个增删怎么导入到原来的页面 */}
+      {/* 状态2的富文本打算用抽屉写一下增删，但是这个增删怎么导入到原来的页面 */}
       <Card>
         <Row>
           <Col span={4}>
-          <h2>评审阶段</h2>
+            <h2>评审阶段</h2>
           </Col>
           <Col>
-          <Button type="primary">导出评审结果</Button>
-          
+            <Button type="primary">导出评审结果</Button>
+
           </Col>
         </Row>
       </Card>
       <Card>
         <Row>
           <Col span={4}>
-          <h2>公示阶段</h2>
+            <h2>公示阶段</h2>
           </Col>
           <Col>
-          <Button type="primary">导出最终结果</Button>
-          
+            <Button type="primary">导出最终结果</Button>
+
           </Col>
         </Row>
       </Card>
-    </div>
+    </PageHeaderWrapper>
+
   );
 }
 

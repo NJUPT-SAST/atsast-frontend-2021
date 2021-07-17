@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table} from 'antd';
+import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
 
@@ -78,6 +78,7 @@ class App extends React.Component {
     selectedRowKeys: [], // Check here to configure the default column
   };
   onSelectChange = selectedRowKeys => {
+    // eslint-disable-next-line no-console
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
@@ -98,7 +99,26 @@ class App extends React.Component {
 
 function JudgeManagement() {
   return (
-    <PageHeaderWrapper title={<Title level={2}>评委授权</Title>}>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/">比赛列表</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/judge-management">评委管理</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/judge-management/judge-authorization">评委授权</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="评委授权"
+        subTitle="评委授权页面"
+      />
       <Card>
         <Row>
           <Col span={15}>
@@ -124,7 +144,7 @@ function JudgeManagement() {
         <br />
         <App />
       </Card>
-    </PageHeaderWrapper>
+    </div>
   );
 }
 
