@@ -10,6 +10,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 function AdminInformation() {
   return (
     <PageHeaderWrapper title={<Title level={2}>仪表盘</Title>}>
+      欢迎来到管理员界面！
     </PageHeaderWrapper>
   );
 }

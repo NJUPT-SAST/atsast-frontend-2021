@@ -21,7 +21,7 @@ class ComCard extends React.Component {
               xx比赛
             </Title>
             <Button href="">修改</Button>
-            <Button href="">状态</Button>
+            <Button href="/admin/competition-lis/competition-state">状态</Button>
             <Button href="/admin/competition-list/judge-management">评委</Button>
             <Button href="">结束</Button>
           </Typography>
