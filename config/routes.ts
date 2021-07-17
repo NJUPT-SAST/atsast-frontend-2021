@@ -65,7 +65,7 @@
         component: './Administrator/CompetitionList',
       },
       {
-        path: '/admin/competition-lis/competition-state',
+        path: '/admin/competition-list/competition-state',
         component: './Administrator/CompetitionList/CompetitionState',
       },
       {
