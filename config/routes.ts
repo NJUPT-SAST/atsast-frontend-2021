@@ -29,6 +29,18 @@
     component: './Competition',
   },
   {
+    path: '/competition/detail',
+    component: './Competition/Detail',
+  },
+  {
+    path: '/competition/detail/state-message',
+    component: './Competition/Detail/StateMessage',
+  },
+  {
+    path: '/competition/detail/state-file',
+    component: './Competition/Detail/StateFile',
+  },
+  {
     path: '/lecture',
     name: '授课',
     icon: 'bulb',
@@ -39,6 +51,10 @@
     name: '个人信息',
     icon: 'bulb',
     component: './PersonalInformation',
+  },
+  {
+    path: '/personalInformation/SignUp',
+    component: './PersonalInformation/SignUp',
   },
   {
     path: '/admin',
@@ -84,10 +100,6 @@
     icon: 'table',
     path: '/list',
     component: './TableList',
-  },
-  {
-    path: '/competition/detail',
-    component: './Competition/Detail',
   },
 
   {
