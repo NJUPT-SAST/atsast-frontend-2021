@@ -40,6 +40,10 @@
     component: './PersonalInformation',
   },
   {
+    path: '/personalInformation/SignUp',
+    component: './PersonalInformation/SignUp',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
