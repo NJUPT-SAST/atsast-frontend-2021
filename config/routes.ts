@@ -28,6 +28,18 @@
     component: './Competition',
   },
   {
+    path: '/competition/detail',
+    component: './Competition/Detail',
+  },
+  {
+    path: '/competition/detail/state-message',
+    component: './Competition/Detail/StateMessage',
+  },
+  {
+    path: '/competition/detail/state-file',
+    component: './Competition/Detail/StateFile',
+  },
+  {
     path: '/lecture',
     name: '授课',
     icon: 'bulb',
@@ -83,10 +95,6 @@
     icon: 'table',
     path: '/list',
     component: './TableList',
-  },
-  {
-    path: '/competition/detail',
-    component: './Competition/Detail',
   },
 
   {
