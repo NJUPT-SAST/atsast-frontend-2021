@@ -3,123 +3,7 @@ import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typo
 import { AudioOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd/es/select';
 import type { OptionsType } from 'rc-select/lib/interface';
-import ProLayout from '@ant-design/pro-layout';
-import RightContent from '@/components/RightContent'
-
-const defaultProps = {
-  routes: [
-    {
-      path: '/user',
-      layout: false,
-      routes: [
-        {
-          path: '/user',
-          routes: [
-            {
-              name: 'login',
-              path: '/user/login',
-              component: './User/login',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: '/welcome',
-      name: 'welcome',
-      icon: 'smile',
-      component: './Welcome',
-    },
-    {
-      path: '/competition',
-      name: '比赛',
-      layout: false,
-      icon: 'flag',
-      component: './Competition',
-    },
-    {
-      path: '/competition/detail',
-      component: './Competition/Detail',
-    },
-    {
-      path: '/competition/detail/state-message',
-      component: './Competition/Detail/StateMessage',
-    },
-    {
-      path: '/competition/detail/state-file',
-      component: './Competition/Detail/StateFile',
-    },
-    {
-      path: '/lecture',
-      name: '授课',
-      icon: 'bulb',
-      component: './Lecture',
-    },
-    {
-      path: '/personalInformation',
-      name: '个人信息',
-      icon: 'bulb',
-      component: './PersonalInformation',
-    },
-    {
-      path: '/personalInformation/SignUp',
-      component: './PersonalInformation/SignUp',
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      icon: 'crown',
-      access: 'canAdmin',
-      routes: [
-        {
-          path: '/admin/dash-board',
-          name: '仪表盘',
-          icon: 'dashboard',
-          component: './Administrator/DashBoard',
-        },
-        {
-          path: '/admin/create-competition',
-          name: '创建比赛',
-          icon: 'form',
-          component: './Administrator/CreateCompetition',
-        },
-  
-        {
-          path: '/admin/competition-list',
-          name: '比赛列表',
-          icon: 'ordered-list',
-          component: './Administrator/CompetitionList',
-        },
-        {
-          path: '/admin/competition-list/competition-state',
-          component: './Administrator/CompetitionList/CompetitionState',
-        },
-        {
-          path: '/admin/competition-list/judge-management',
-          component: './Administrator/CompetitionList/JudgeManagement',
-        },
-        {
-          path: '/admin/competition-list/judge-management/judge-authorization',
-          component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
-        },
-      ],
-    },
-    {
-      name: 'list.table-list',
-      icon: 'table',
-      path: '/list',
-      component: './TableList',
-    },
-  
-    {
-      path: '/',
-      redirect: '/welcome',
-    },
-    {
-      component: './404',
-    },
-  ]
-};
+import './index.less'
 
 // 跑马灯格式
 const contentStyle = {
@@ -197,27 +81,21 @@ const rowHeightStyle = {
 export default (): React.ReactNode => {
   return (
     <div>
-      <ProLayout
-        navTheme="dark"
-        primaryColor='#1890ff'
-        layout="top"
-        colorWeak={false}
-        headerRender={()=> (
-          <RightContent/>
-        )}
-      ></ProLayout>
-      <Carousel autoplay>
-        <div>
-          <h3 style={contentStyle}>PicLink1</h3>
+      <Carousel autoplay effect="fade">
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
         </div>
-        <div>
-          <h3 style={contentStyle}>PicLink2</h3>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
         </div>
-        <div>
-          <h3 style={contentStyle}>Picklink3</h3>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
         </div>
-        <div>
-          <h3 style={contentStyle}>Piclink4</h3>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+        </div>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
         </div>
       </Carousel>
       <Card>

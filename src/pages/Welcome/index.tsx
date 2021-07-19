@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
 import UserName from './UserName';
+import './index.less'
 
 // 获取当前日期
 const nowDate = new Date();
@@ -43,18 +44,19 @@ function greeting(hour: number) {
 }
 
 /* 跑马灯文本格式 */
-const contentStyle = {
-  height: '450px',
-  color: '#fff',
-  lineHeight: '450px',  // 内嵌字符height
-  textAlign: 'center',
-  background: '#364d79'
-};
+// const contentStyle = {
+//   height: '450px',
+//   color: '#fff',
+//   lineHeight: '450px',  // 内嵌字符height
+//   textAlign: 'center',
+//   background: '#364d79'
+// };
 
 /* Row间Height（通用） */
 const rowHeightStyle = {
   height: '16px'
 }
+
 /* “最新活动” 中内嵌卡片样式 */
 const gridStyle = {
   width: '33.3%',
@@ -71,7 +73,7 @@ export default (): React.ReactNode => {
     setIsModalVisible(false);
   };
   return (
-    <PageContainer>
+    <div>
       <Row gutter={16}>
         <Col span={2}></Col>
         <Col span={14}>
@@ -79,20 +81,24 @@ export default (): React.ReactNode => {
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
-          <Carousel autoplay>
-            <div>
-              <h3 style={contentStyle}>PicLink1</h3>
+          <Carousel autoplay effect="fade">
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>PicLink2</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>Picklink3</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>Piclink4</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+            </div>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
             </div>
           </Carousel>
+          <Row style={rowHeightStyle}></Row>
           <div className="nearestAct">
             <Card title="最新活动" bordered={false} extra={<a href="#">更多活动</a>}>
               <Card.Grid style={gridStyle} >
@@ -170,6 +176,6 @@ export default (): React.ReactNode => {
           </Card>
         </Col>
       </Row>
-    </PageContainer>
+    </div>
   );
 };
