@@ -123,8 +123,7 @@ export default (): React.ReactNode => {
               <Button type="link">查看比赛信息</Button><br></br>
               <Button type="link">查看队伍信息</Button><br></br>
             </Card>
-          </div>,
-
+          </div>
 
           <Modal title="队友邀请" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 
