@@ -24,7 +24,6 @@
   {
     path: '/competition',
     name: '比赛',
-    layout: false,
     icon: 'flag',
     component: './Competition',
   },

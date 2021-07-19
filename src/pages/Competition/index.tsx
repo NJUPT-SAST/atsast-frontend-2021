@@ -3,8 +3,6 @@ import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typo
 import { AudioOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd/es/select';
 import type { OptionsType } from 'rc-select/lib/interface';
-import ProLayout from '@ant-design/pro-layout';
-import RightContent from '@/components/RightContent'
 
 const defaultProps = {
   routes: [
@@ -197,15 +195,6 @@ const rowHeightStyle = {
 export default (): React.ReactNode => {
   return (
     <div>
-      <ProLayout
-        navTheme="dark"
-        primaryColor='#1890ff'
-        layout="top"
-        colorWeak={false}
-        headerRender={()=> (
-          <RightContent/>
-        )}
-      ></ProLayout>
       <Carousel autoplay>
         <div>
           <h3 style={contentStyle}>PicLink1</h3>
