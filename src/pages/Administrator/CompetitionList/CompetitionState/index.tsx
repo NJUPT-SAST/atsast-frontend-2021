@@ -1,6 +1,6 @@
 import React from 'react';
 /* 以下是面包屑 */
-import { Col, Row, Space } from 'antd';
+import { Col, Row, Space, Breadcrumb, PageHeader } from 'antd';
 import { Divider } from 'antd';
 /* 以下是卡片 */
 import { Card } from 'antd';
@@ -15,7 +15,6 @@ import { MinusCircleOutlined, PlusOutlined, DownloadOutlined } from '@ant-design
 /* 以下是生成邀请链接-报名阶段 */
 import { Typography } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 const content1 = (
   <div>
     <p>单个队员邀请链接</p>
@@ -178,7 +177,23 @@ const Demo = () => {
 /* 以下是返回显示页面 */
 function CompetitionState() {
   return (
-    <PageHeaderWrapper title={<Title level={2}>比赛状态</Title>}>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/">比赛列表</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/competition-list/competition-state">比赛状态</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="比赛状态"
+        subTitle="比赛状态页面"
+      />
       {/* 报名阶段 */}
       <Card>
         <Row>
@@ -241,7 +256,7 @@ function CompetitionState() {
           </Col>
         </Row>
       </Card>
-    </PageHeaderWrapper>
+    </div>
 
   );
 }

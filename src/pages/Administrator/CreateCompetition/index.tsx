@@ -17,9 +17,8 @@ import { Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 
 /**/
-import { Typography } from 'antd';
+import { Typography, Breadcrumb, PageHeader, } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 const Demo = () => {
   const onFinish = (values: any) => {
@@ -231,10 +230,23 @@ const { TextArea } = Input;
 {/* 以下是返回页面 */ }
 function CreatCompetition() {
   return (
-    <PageHeaderWrapper title={<Title level={2}>创建比赛</Title>}>
-      <Card hoverable style={{ height: 230 }}>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/create-competition">新建比赛</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="新建比赛"
+        subTitle="新建比赛页面"
+      />
+      <Card hoverable>
         <Row>
-          <Col sapn={40}>
+          <Col span={40}>
             <div className="form">
 
               <Demo />
@@ -245,7 +257,7 @@ function CreatCompetition() {
       <Card hoverable className="saizhi" style={{ width: 'auto' }}>
         <Row>
           <Col span={11}>
-            <h3>赛制</h3>
+            <h2>赛制</h2>
           </Col>
           <App1 />
         </Row>
@@ -349,7 +361,7 @@ function CreatCompetition() {
 
       {/* 这里是上传比赛策划案 */}
       <Card hoverable>
-        <h3>比赛策划案上传</h3>
+        <h1>比赛策划案上传</h1>
         <Dragger {...props}>
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
@@ -364,17 +376,10 @@ function CreatCompetition() {
       {/* 这里是校内横幅*/}
       <Card>
         <Row>
-          <Col span={11}>
+          <Col span={22}>
             <Form.Item
               label="校内横幅"
               name="校内横幅"
-              rules={[{ required: true, message: 'Please input iterm!' }]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={11}>
-            <Form.Item
               rules={[{ required: true, message: 'Please input iterm!' }]}
             >
               <Input />
@@ -387,8 +392,7 @@ function CreatCompetition() {
         <h1>比赛详情</h1>
         <TextArea rows={6} />
       </Card>
-    </PageHeaderWrapper>
-
+    </div>
   );
 }
 

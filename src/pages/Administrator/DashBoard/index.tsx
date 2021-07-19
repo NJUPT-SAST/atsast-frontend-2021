@@ -1,7 +1,5 @@
 import React from 'react';
-import { Typography,  } from 'antd';
-const { Title, Paragraph, Text, Link } = Typography;
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Breadcrumb, PageHeader, Card } from 'antd';
 
 
 // eslint-disable-next-line spaced-comment
@@ -9,9 +7,25 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 function AdminInformation() {
   return (
-    <PageHeaderWrapper title={<Title level={2}>仪表盘</Title>}>
-      欢迎来到管理员界面！
-    </PageHeaderWrapper>
+    <div>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/dash-board">仪表盘</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="仪表盘"
+        subTitle="仪表盘页面"
+      />
+      <Card>
+        欢迎来到管理员界面！
+      </Card>
+    </div>
+
   );
 }
 
