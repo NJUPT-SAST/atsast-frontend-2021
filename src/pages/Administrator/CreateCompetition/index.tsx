@@ -10,7 +10,7 @@ import styles from './index.less'
 /*比赛流程-多元复合 */
 import { DatePicker } from 'antd';
 import { Space } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined, PlusOutlined, ReadOutlined } from '@ant-design/icons';
 
 /*上传引入 */
 import { Upload, message } from 'antd';
@@ -18,6 +18,9 @@ import { InboxOutlined } from '@ant-design/icons';
 
 /**/
 import { Typography, Breadcrumb, PageHeader, } from 'antd';
+/*限定团队最大最小人数*/
+import { InputNumber } from 'antd';
+
 const { Title, Paragraph, Text, Link } = Typography;
 
 const Demo = () => {
@@ -190,11 +193,7 @@ const Demo1 = () => {
           </>
         )}
       </Form.List>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+      
     </Form>
   );
 };
@@ -224,7 +223,28 @@ const props = {
 // eslint-disable-next-line no-lone-blocks
 {/* 以下是大文本输入页面 */ }
 const { TextArea } = Input;
+// eslint-disable-next-line no-lone-blocks
+{/* 以下是最大最小人数输入页面 */ }
+const Demo6 = () => {
+  const [value, setValue] = React.useState<string | number>('99');
 
+  return (
+    <Space>
+      <text>最少人数</text>
+      <InputNumber min={1} max={10} value={value} onChange={setValue} />
+    </Space>
+  );
+};
+const Demo7 = () => {
+  const [value, setValue] = React.useState<string | number>('99');
+
+  return (
+    <Space>
+       <text>最多人数</text>
+      <InputNumber min={1} max={10} value={value} onChange={setValue} />
+    </Space>
+  );
+};
 
 // eslint-disable-next-line no-lone-blocks
 {/* 以下是返回页面 */ }
@@ -257,7 +277,7 @@ function CreatCompetition() {
       <Card hoverable className="saizhi" style={{ width: 'auto' }}>
         <Row>
           <Col span={11}>
-            <h2>赛制</h2>
+            <h3>赛制</h3>
           </Col>
           <App1 />
         </Row>
@@ -266,7 +286,7 @@ function CreatCompetition() {
         <Card hoverable className="nianji">
           <Row>
             <Col span={11}>
-              <h2>是否限制参赛年纪</h2>
+              <h3>是否限制参赛年纪</h3>
             </Col>
             <Col span={12}>
               <Select
@@ -324,7 +344,7 @@ function CreatCompetition() {
         <Card hoverable >
           <Row>
             <Col span={11}>
-              <h2>是否存在指导老师</h2>
+              <h3>是否存在指导老师</h3>
             </Col>
             <Col>
               <App2 />
@@ -334,7 +354,7 @@ function CreatCompetition() {
         <Card hoverable>
           <Row>
             <Col span={11}>
-              <h2>是否设置作品类别</h2>
+              <h3>是否设置作品类别</h3>
             </Col>
             <Col>
               <App3 />
@@ -343,11 +363,15 @@ function CreatCompetition() {
         </Card>
         <Card hoverable>
           <Row>
-            <Col span={11}>
-              <h2>是否存设置团队组别</h2>
+            <Col span={8}>
+              <h3>是否存设置团队组别</h3>
+            </Col>
+            <Col span={8}>
+              <App4 />
             </Col>
             <Col>
-              <App4 />
+             <Demo6 /> <Demo7/>
+
             </Col>
           </Row>
         </Card>
@@ -391,6 +415,25 @@ function CreatCompetition() {
       <Card hoverable>
         <h1>比赛详情</h1>
         <TextArea rows={6} />
+      </Card>
+      <Card hoverable>
+      
+        <Row>
+          <Col span={11}>
+            
+          </Col>
+          <Col span={12}>
+          <Form.Item>
+          <Button type="primary" htmlType="submit">
+           提交
+          </Button>
+            </Form.Item>
+          </Col>
+          <Col >
+            
+          </Col>
+        </Row>
+        
       </Card>
     </div>
   );
