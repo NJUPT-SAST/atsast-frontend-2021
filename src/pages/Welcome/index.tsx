@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
 import UserName from './UserName';
 import './index.less'
+import axios from 'axios'
+
+// axios({
+//   method: 'get',
+//   url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
+//   params: {
+//     // id: 12345,
+//   }
+// })
+//   .then(function (response) {
+//     console.log(response);
+//     // document.getElementById("test1").innerHTML=qqq;
+//   });
+
 
 // 获取当前日期
 const nowDate = new Date();
@@ -72,12 +85,35 @@ export default (): React.ReactNode => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  let [re,setRe]=useState(0);
+
+  axios({
+    method: 'get',
+    url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
+    params: {
+      // id: 12345,
+    }
+  })
+    .then(function (response) {
+      console.log(response);
+      re=response.data.uid;
+      setRe(re);
+      // document.getElementById("test1").innerHTML=qqq;
+    });
+
+    const ree=re;
+
+    
+
+
   return (
     <div>
       <Row gutter={16}>
         <Col span={2}></Col>
         <Col span={14}>
           <Card >
+            <Row><text>{ree}</text></Row>
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}

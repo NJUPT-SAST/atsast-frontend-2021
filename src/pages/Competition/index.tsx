@@ -1,9 +1,23 @@
 import React from 'react';
-import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography, Carousel, Collapse, Col, Row } from 'antd';
+import {
+  Card,
+  Input,
+  Space,
+  Radio,
+  Pagination,
+  DatePicker,
+  Button,
+  Select,
+  Typography,
+  Carousel,
+  Collapse,
+  Col,
+  Row,
+} from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd/es/select';
 import type { OptionsType } from 'rc-select/lib/interface';
-import './index.less'
+import './index.less';
 
 // 跑马灯格式
 const contentStyle = {
@@ -41,15 +55,7 @@ export interface DebounceSelectProps<ValueType = any>
 // 标签选择相关
 const { Title } = Typography;
 
-const options: OptionsType | { value: string; disabled: boolean }[] | undefined = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
-}
+const options = ['test1','test2']
 
 function handleChange(value: any) {
   // eslint-disable-next-line no-console
@@ -78,6 +84,9 @@ const rowHeightStyle = {
   height: '16px',
 };
 
+// const { selectedItems } = this.state;
+// const filteredOptions = OPTIONS.filter(o => !selectedItems.includes(o));
+
 export default (): React.ReactNode => {
   return (
     <div>
@@ -98,6 +107,7 @@ export default (): React.ReactNode => {
           <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
         </div>
       </Carousel>
+      <Row style={rowHeightStyle}></Row>
       <Card>
         <Space direction="horizontal">
           <text>搜索：</text>
@@ -111,43 +121,38 @@ export default (): React.ReactNode => {
         </Space>
       </Card>
       <Card>
-        <Collapse ghost>
-          <Panel header="筛选" key="1">
-            <Card>
-              <text>所属类目：</text>
-              <Radio.Group defaultValue="a" size="middle">
-                <Radio.Button value="a">Hangzhou</Radio.Button>
-                <Radio.Button value="b">Shanghai</Radio.Button>
-                <Radio.Button value="c">Beijing</Radio.Button>
-                <Radio.Button value="d">Chengdu</Radio.Button>
-              </Radio.Group>
-            </Card>
-            <Card>
-              <text>主办方：</text>
-              <Select
-                mode="multiple"
-                style={{ width: '30%' }}
-                placeholder="Please select"
-                defaultValue={[]}
-                onChange={handleChange}
-                options={options}
-              />
-            </Card>
-            <Card>
-              <text>赛程：</text>
-              <App />
-            </Card>
-            <Card>
-              <text>时间范围：</text>
-              <RangePicker />
-              <Button type="link">不看已结束的</Button>
-            </Card>
-          </Panel>
-        </Collapse>
+        <text>所属类目：</text>
+        <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
+          <Radio.Button value="a">全部</Radio.Button>
+          <Radio.Button value="b">理工类</Radio.Button>
+          <Radio.Button value="c">社科类</Radio.Button>
+          <Radio.Button value="d">综合类</Radio.Button>
+        </Radio.Group>
       </Card>
-      <Card>
-        <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
-      </Card>
+      <Collapse defaultActiveKey={['1']} ghost bordered={false}>
+        <Panel header="其他选项" key="1">
+          <Card bordered={false}>
+            <text>主办方：</text>
+            <Select
+        mode="multiple"
+        placeholder="Inserted are removed"
+        style={{ width: '100%' }}
+      >
+      </Select>
+          </Card>
+          <Card bordered={false}>
+            <text>主办方：</text>
+            <Select
+        mode="multiple"
+        placeholder="Inserted are removed"
+        style={{ width: '100%' }}
+      >
+      </Select>
+          </Card>
+        </Panel>
+      </Collapse>
+      <Row style={rowHeightStyle}></Row>
+      <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
     </div>
   );
 };
