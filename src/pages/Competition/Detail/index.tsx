@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Typography, Tag, Steps, Button, Space} from 'antd';
+import { Card, Typography, Tag, Steps, Button, Space } from 'antd';
 
 const { Title } = Typography;
 const { Step } = Steps;
@@ -30,12 +30,45 @@ class Units extends React.Component {
   }
 }
 class StepTag extends React.Component {
+  state = {
+    list: {
+      currentStage: {
+        stageType: "",
+        file: {
+          fileDescription: "",
+          fileLimit: "",
+        },
+        richText: "",
+        stageId: "",
+      },
+      stages: [
+        {
+          stageName: "",
+          stageTimes: {
+            stageBegin: "",
+            stageEnd: "",
+          },
+        }
+      ],
+    }
+  }
+  componentDidMount() {
+    fetch('https://yapi.sast.fun/mock/13/user/conteststage', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list: json });
+        // console.log(this.state.list);
+      })
+  }
   render() {
     return (
       <>
-        <Steps current={StepNow}>
-          {StepData.map(data => (
-            <Step title={data[0]} description={data[1]} />
+        {console.log(this.state.list)}
+        <Steps current={this.state.list.currentStage.stageId}>
+          {this.state.list.stages.map(data => (
+            <Step title={data.stageName} description={data.stageTimes.stageBegin+"——"+data.stageTimes.stageEnd} />
           ))}
         </Steps>
       </>
