@@ -122,6 +122,12 @@
         icon: 'dashboard',
         component: './SuperAdministrator/EndVetting',
       },
+      {
+        path: '/super-admin/create-approval',
+        name: '创建审批',
+        icon: 'form',
+        component: './SuperAdministrator/CreateApproval',
+      },
     ],
   },
   {

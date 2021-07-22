@@ -1,6 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader} from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 const CardStyle = {
   height: '150px',
@@ -9,10 +8,6 @@ const NewStyle = {
   height: '100px',
   textAlign: 'center',
 };
-
-// eslint-disable-next-line spaced-comment
-/*/这是管理员信息页面，也就是仪表页面，主要功能是查看管理员本身账户 */
-
 class ComCol extends React.Component {
   state = {
     list: [
@@ -68,7 +63,7 @@ function AdminInformation() {
     <div>
       <Breadcrumb>
         <Breadcrumb.Item>
-          <a href="/super-admin">管理页</a>
+          <a href="/super-admin">超级管理员</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
           <a href="/super-admin/dash-board">仪表盘</a>
@@ -79,6 +74,23 @@ function AdminInformation() {
         title="仪表盘"
         subTitle="仪表盘页面"
       />
+      <Card>
+        <Row gutter={[36, 18]}>
+          <Col sm={24} xl={2}>
+            管理员
+          </Col>
+          <Col sm={24} xl={6}>
+            <Button type="primary">
+              生成邀请注册链接
+            </Button>
+          </Col>
+          <Col sm={24} xl={6}>
+            <Button type="primary">
+              导入Excel生成账号
+            </Button>
+          </Col>
+        </Row>
+      </Card>
       <Card>
         <Row gutter={[36, 18]}>
           <ComCol />
