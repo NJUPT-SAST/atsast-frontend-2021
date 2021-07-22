@@ -50,7 +50,13 @@
     name: '个人信息',
     icon: 'bulb',
     component: './PersonalInformation',
-  },
+    },
+    {
+        path: '/judgeDetail',
+        name: '评审详情页',
+        icon: 'bulb',
+        component: './JudgeDetail',
+      },
   {
     path: '/personalInformation/SignUp',
     component: './PersonalInformation/SignUp',
