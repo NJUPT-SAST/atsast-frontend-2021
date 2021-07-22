@@ -112,6 +112,12 @@
         icon: 'dashboard',
         component: './SuperAdministrator/DashBoard',
       },
+      {
+        path: '/super-admin/create-approval',
+        name: '创建审批',
+        icon: 'form',
+        component: './SuperAdministrator/CreateApproval',
+      },
     ],
   },
   {

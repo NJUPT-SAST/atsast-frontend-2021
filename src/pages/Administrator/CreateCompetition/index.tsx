@@ -286,7 +286,7 @@ function CreatCompetition() {
         <Card hoverable className="nianji">
           <Row>
             <Col span={11}>
-              <h3>是否限制参赛年纪</h3>
+              <h3>是否限制参赛年级</h3>
             </Col>
             <Col span={12}>
               <Select
@@ -379,13 +379,13 @@ function CreatCompetition() {
 
       {/* 这里是比赛流程页面 */}
       <Card hoverable>
-        <h1>比赛流程</h1>
+        <h3>比赛流程</h3>
         <Demo1 />
       </Card>
 
       {/* 这里是上传比赛策划案 */}
       <Card hoverable>
-        <h1>比赛策划案上传</h1>
+        <h3>比赛策划案上传</h3>
         <Dragger {...props}>
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
@@ -398,7 +398,7 @@ function CreatCompetition() {
         </Dragger>
       </Card>
       {/* 这里是校内横幅*/}
-      <Card>
+      <Card hoverable>
         <Row>
           <Col span={22}>
             <Form.Item
@@ -413,7 +413,7 @@ function CreatCompetition() {
       </Card>
       {/* 这里是比赛详情简介*/}
       <Card hoverable>
-        <h1>比赛详情</h1>
+        <h3>比赛详情</h3>
         <TextArea rows={6} />
       </Card>
       <Card hoverable>
