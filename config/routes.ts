@@ -64,7 +64,7 @@
   {
     path: '/admin',
     name: 'admin',
-    icon: 'crown',
+    icon: 'code',
     access: 'canAdmin',
     routes: [
       {
@@ -97,6 +97,20 @@
       {
         path: '/admin/competition-list/judge-management/judge-authorization',
         component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
+      },
+    ],
+  },
+  {
+    path: '/super-admin',
+    name: '超级管理员',
+    icon: 'crown',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/super-admin/dash-board',
+        name: '仪表盘',
+        icon: 'dashboard',
+        component: './SuperAdministrator/DashBoard',
       },
     ],
   },
