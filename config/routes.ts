@@ -98,6 +98,10 @@
         path: '/admin/competition-list/judge-management/judge-authorization',
         component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
       },
+      {
+        path: '/admin/competition-list/end-competition',
+        component: './Administrator/CompetitionList/EndCompetition',
+      },
     ],
   },
   {
