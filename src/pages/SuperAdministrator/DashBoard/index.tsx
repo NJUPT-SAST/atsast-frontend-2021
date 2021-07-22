@@ -10,6 +10,9 @@ const NewStyle = {
   textAlign: 'center',
 };
 
+// eslint-disable-next-line spaced-comment
+/*/这是管理员信息页面，也就是仪表页面，主要功能是查看管理员本身账户 */
+
 class ComCol extends React.Component {
   state = {
     list: [
@@ -43,10 +46,10 @@ class ComCol extends React.Component {
           <Col xs={24} md={12} xl={8}>
             <Card style={CardStyle} hoverable
               actions={[
-                <a href="">修改</a>,
-                <a href="/admin/competition-list/competition-state">状态</a>,
-                <a href="/admin/competition-list/judge-management">评委</a>,
-                <a href="/admin/competition-list/end-competition">结束</a>,
+                <a href="">详情</a>,
+                <a href="">状态</a>,
+                <a href="">审批</a>,
+                <a href="">后续</a>,
               ]}
             >
               <Title level={3}>
@@ -59,38 +62,31 @@ class ComCol extends React.Component {
     );
   }
 }
-function CompetitionList() {
+
+function AdminInformation() {
   return (
     <div>
       <Breadcrumb>
         <Breadcrumb.Item>
-          <a href="/admin">管理页</a>
+          <a href="/super-admin">管理页</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/admin/competition-list/">比赛列表</a>
+          <a href="/super-admin/dash-board">仪表盘</a>
         </Breadcrumb.Item>
       </Breadcrumb>
       <PageHeader
         className="site-page-header"
-        title="比赛列表"
-        subTitle="比赛列表页面"
+        title="仪表盘"
+        subTitle="仪表盘页面"
       />
       <Card>
         <Row gutter={[36, 18]}>
           <ComCol />
-          <Col xs={24} md={12} xl={8}>
-            <Card style={CardStyle} hoverable>
-              <a href="/admin/create-competition">
-                <Button type="dashed" block icon={<PlusOutlined />} style={NewStyle}>
-                  新建比赛
-                </Button>
-              </a>
-            </Card>
-          </Col>
         </Row>
       </Card>
     </div>
+
   );
 }
 
-export default CompetitionList;
+export default AdminInformation;

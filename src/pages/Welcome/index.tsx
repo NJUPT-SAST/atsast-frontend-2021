@@ -86,23 +86,23 @@ export default (): React.ReactNode => {
     setIsModalVisible(false);
   };
 
-  let [re,setRe]=useState(0);
+  // let [re,setRe]=useState(0);
 
-  axios({
-    method: 'get',
-    url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
-    params: {
-      // id: 12345,
-    }
-  })
-    .then(function (response) {
-      console.log(response);
-      re=response.data.uid;
-      setRe(re);
-      // document.getElementById("test1").innerHTML=qqq;
-    });
+  // axios({
+  //   method: 'get',
+  //   url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
+  //   params: {
+  //     // id: 12345,
+  //   }
+  // })
+  //   .then(function (response) {
+  //     console.log(response);
+  //     re=response.data.uid;
+  //     setRe(re);
+  //     // document.getElementById("test1").innerHTML=qqq;
+  //   });
 
-    const ree=re;
+  //   const ree=re;
 
     
 
@@ -113,7 +113,7 @@ export default (): React.ReactNode => {
         <Col span={2}></Col>
         <Col span={14}>
           <Card >
-            <Row><text>{ree}</text></Row>
+            {/* <Row><text>{ree}</text></Row> */}
             <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
