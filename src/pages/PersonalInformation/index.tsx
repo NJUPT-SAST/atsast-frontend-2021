@@ -1,96 +1,36 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography, Divider } from 'antd';
-import { useIntl, FormattedMessage } from 'umi';
-import { AudioOutlined } from '@ant-design/icons';
-import { SelectProps } from 'antd/es/select';
+import { Descriptions, Card, Input, Form, DatePicker, Button, Typography, Row, Col } from 'antd';
 
-// 搜索栏相关
-const { Search } = Input;
+/* Row间Height（通用） */
+const rowHeightStyle = {
+  height: '16px',
+};
 
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
-
-const onSearch = value => console.log(value);
-
-export interface DebounceSelectProps<ValueType = any>
-  extends Omit<SelectProps<ValueType>, 'options' | 'children'> {
-  fetchOptions: (search: string) => Promise<ValueType[]>;
-  debounceTimeout?: number;
-}
-
-// 标签选择相关
-const { Title } = Typography;
-
-const options = [];
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
-}
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
-// 日期选择相关
-const { RangePicker } = DatePicker;
-
-// 底部翻页相关
-function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
-}
+const { TextArea } = Input;
 
 export default (): React.ReactNode => {
   return (
     <PageContainer>
       <Card>
-        <Space direction="horizontal">
-          <text>搜索：</text>
-          <Search
-            placeholder="input search text"
-            allowClear
-            enterButton="Search"
-            size="middle"
-            onSearch={onSearch}
-          />
-        </Space>
+        <Descriptions
+          title="个人信息"
+          bordered
+          column={{ xxl: 4, xl: 2, lg: 3, md: 3, sm: 2, xs: 1 }}
+        >
+          <Descriptions.Item label="姓名">Zhou Maomao</Descriptions.Item>
+          <Descriptions.Item label="专业">1810000000</Descriptions.Item>
+          <Descriptions.Item label="学号">empty</Descriptions.Item>
+          <Descriptions.Item label="身份证号">empty</Descriptions.Item>
+          <Descriptions.Item label="手机号">empty</Descriptions.Item>
+          <Descriptions.Item label="宿舍号">empty</Descriptions.Item>
+          <Descriptions.Item label="邮箱">empty</Descriptions.Item>
+          <Descriptions.Item label="QQ">empty</Descriptions.Item>
+          <Descriptions.Item label="学院">empty</Descriptions.Item>
+          <Descriptions.Item label="政治面貌">empty</Descriptions.Item>
+        </Descriptions>
+        <Button >修改</Button>
       </Card>
-      <Card>
-        <text>所属类目：</text>
-        <Radio.Group defaultValue="a" size="middle">
-          <Radio.Button value="a">Hangzhou</Radio.Button>
-          <Radio.Button value="b">Shanghai</Radio.Button>
-          <Radio.Button value="c">Beijing</Radio.Button>
-          <Radio.Button value="d">Chengdu</Radio.Button>
-        </Radio.Group>
-      </Card>
-      <Card>
-        <text>主办方：</text>
-        <Select
-          mode="multiple"
-          style={{ width: '25%' }}
-          placeholder="Please select"
-          defaultValue={[]}
-          onChange={handleChange}
-          options={options}
-        />
-      </Card>
-      <Card>
-        <text>时间范围：</text>
-        <RangePicker />
-        <Button type="link">不看已结束的</Button>
-      </Card>
-      <br />
-      <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
     </PageContainer>
   );
 };
