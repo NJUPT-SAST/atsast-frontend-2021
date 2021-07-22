@@ -16,7 +16,7 @@ const Settings: LayoutSettings & {
   pwa: false,
   splitMenus: true,
   logo: 'https://sast.njupt.edu.cn/public/img/logo2.png',
-//   logo: 'https://zlhad.oss-cn-shanghai.aliyuncs.com/img/20210317224909.png',
+  // logo: 'https://zlhad.oss-cn-shanghai.aliyuncs.com/img/20210317224909.png',
   iconfontUrl: '',
 };
 

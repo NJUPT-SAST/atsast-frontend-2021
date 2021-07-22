@@ -28,6 +28,18 @@
     component: './Competition',
   },
   {
+    path: '/competition/detail',
+    component: './Competition/Detail',
+  },
+  {
+    path: '/competition/detail/state-message',
+    component: './Competition/Detail/StateMessage',
+  },
+  {
+    path: '/competition/detail/state-file',
+    component: './Competition/Detail/StateFile',
+  },
+  {
     path: '/lecture',
     name: '授课',
     icon: 'bulb',
@@ -46,17 +58,45 @@
         component: './JudgeDetail',
       },
   {
+    path: '/personalInformation/SignUp',
+    component: './PersonalInformation/SignUp',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
-    component: './Admin',
     routes: [
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
+        path: '/admin/dash-board',
+        name: '仪表盘',
+        icon: 'dashboard',
+        component: './Administrator/DashBoard',
+      },
+      {
+        path: '/admin/create-competition',
+        name: '创建比赛',
+        icon: 'form',
+        component: './Administrator/CreateCompetition',
+      },
+
+      {
+        path: '/admin/competition-list',
+        name: '比赛列表',
+        icon: 'ordered-list',
+        component: './Administrator/CompetitionList',
+      },
+      {
+        path: '/admin/competition-list/competition-state',
+        component: './Administrator/CompetitionList/CompetitionState',
+      },
+      {
+        path: '/admin/competition-list/judge-management',
+        component: './Administrator/CompetitionList/JudgeManagement',
+      },
+      {
+        path: '/admin/competition-list/judge-management/judge-authorization',
+        component: './Administrator/CompetitionList/JudgeManagement/JudgeAuthorization',
       },
     ],
   },
@@ -66,10 +106,7 @@
     path: '/list',
     component: './TableList',
   },
-  {
-    path: '/competition/detail',
-    component: './Competition/Detail',
-  },
+
   {
     path: '/',
     redirect: '/welcome',

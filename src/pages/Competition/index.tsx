@@ -1,17 +1,31 @@
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography, Carousel, Collapse, Col, Row } from 'antd';
+import {
+  Card,
+  Input,
+  Space,
+  Radio,
+  Pagination,
+  DatePicker,
+  Button,
+  Select,
+  Typography,
+  Carousel,
+  Collapse,
+  Col,
+  Row,
+} from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd/es/select';
 import type { OptionsType } from 'rc-select/lib/interface';
+import './index.less';
 
 // 跑马灯格式
 const contentStyle = {
   height: '450px',
   color: '#fff',
-  lineHeight: '450px',  // 内嵌字符height
+  lineHeight: '450px', // 内嵌字符height
   textAlign: 'center',
-  background: '#364d79'
+  background: '#364d79',
 };
 
 // 搜索栏相关
@@ -41,15 +55,7 @@ export interface DebounceSelectProps<ValueType = any>
 // 标签选择相关
 const { Title } = Typography;
 
-const options: OptionsType | { value: string; disabled: boolean; }[] | undefined = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
-}
+const options = ['test1','test2']
 
 function handleChange(value: any) {
   // eslint-disable-next-line no-console
@@ -75,84 +81,78 @@ const App = () => (
 
 /* Row间Height（通用） */
 const rowHeightStyle = {
-  height: '16px'
-}
+  height: '16px',
+};
+
+// const { selectedItems } = this.state;
+// const filteredOptions = OPTIONS.filter(o => !selectedItems.includes(o));
 
 export default (): React.ReactNode => {
   return (
-    <PageContainer>
-      <Row gutter={16}>
-        <Col span={2}></Col>
-        <Col span={15}>
-          <Carousel autoplay>
-            <div>
-              <h3 style={contentStyle}>PicLink1</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>PicLink2</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>Picklink3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>Piclink4</h3>
-            </div>
-          </Carousel>
-          <Card>
-            <Space direction="horizontal">
-              <text>搜索：</text>
-              <Search
-                placeholder="input search text"
-                allowClear
-                enterButton="Search"
-                size="middle"
-                onSearch={onSearch}
-              />
-            </Space>
+    <div>
+      <Carousel autoplay effect="fade">
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
+        </div>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
+        </div>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
+        </div>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+        </div>
+        <div className="pic">
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
+        </div>
+      </Carousel>
+      <Row style={rowHeightStyle}></Row>
+      <Card>
+        <Space direction="horizontal">
+          <text>搜索：</text>
+          <Search
+            placeholder="input search text"
+            allowClear
+            enterButton="Search"
+            size="middle"
+            onSearch={onSearch}
+          />
+        </Space>
+      </Card>
+      <Card>
+        <text>所属类目：</text>
+        <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
+          <Radio.Button value="a">全部</Radio.Button>
+          <Radio.Button value="b">理工类</Radio.Button>
+          <Radio.Button value="c">社科类</Radio.Button>
+          <Radio.Button value="d">综合类</Radio.Button>
+        </Radio.Group>
+      </Card>
+      <Collapse defaultActiveKey={['1']} ghost bordered={false}>
+        <Panel header="其他选项" key="1">
+          <Card bordered={false}>
+            <text>主办方：</text>
+            <Select
+        mode="multiple"
+        placeholder="Inserted are removed"
+        style={{ width: '100%' }}
+      >
+      </Select>
           </Card>
-          <Collapse ghost>
-            <Panel header="筛选" key="1">
-              <Card>
-                <text>所属类目：</text>
-                <Radio.Group defaultValue="a" size="middle">
-                  <Radio.Button value="a">Hangzhou</Radio.Button>
-                  <Radio.Button value="b">Shanghai</Radio.Button>
-                  <Radio.Button value="c">Beijing</Radio.Button>
-                  <Radio.Button value="d">Chengdu</Radio.Button>
-                </Radio.Group>
-              </Card>
-              <Card>
-                <text>主办方：</text>
-                <Select
-                  mode="multiple"
-                  style={{ width: '30%' }}
-                  placeholder="Please select"
-                  defaultValue={[]}
-                  onChange={handleChange}
-                  options={options}
-                />
-              </Card>   
-              <Card>
-                <text>赛程：</text>
-                <App />
-              </Card>
-              <Card>
-                <text>时间范围：</text>
-                <RangePicker />
-                <Button type="link">不看已结束的</Button>
-              </Card>
-            </Panel>
-          </Collapse>
-          <br />
-          <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
-        </Col>
-        <Col span={5}>
-          <Card>
-            User Information
+          <Card bordered={false}>
+            <text>主办方：</text>
+            <Select
+        mode="multiple"
+        placeholder="Inserted are removed"
+        style={{ width: '100%' }}
+      >
+      </Select>
           </Card>
-        </Col>
-        <Col span={2}></Col>
-      </Row>
-    </PageContainer>
+        </Panel>
+      </Collapse>
+      <Row style={rowHeightStyle}></Row>
+      <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+    </div>
   );
 };

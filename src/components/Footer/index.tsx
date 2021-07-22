@@ -13,7 +13,8 @@ const box_style = {
 
 }
 const text_style = {
-  margin: '3px 3px',
+    margin: '3px 3px',
+    color: '#FFFFFF'
 }
 
 export default () => (
@@ -42,7 +43,9 @@ export default () => (
                 </div>
                 <div style={text_style}>
                     <a href="mailto:sast@njupt.edu.cn">
+                        <span style={text_style}>
                         <MailOutlined />
+                        </span>
                         <span style={text_style}>
                         Mail to us
                         </span>
@@ -50,14 +53,18 @@ export default () => (
                 </div>
                 <div style={text_style} >
                     <a href="https://github.com/NJUPT-SAST-Technology-Center">
-                         <GithubOutlined />
+                         <span style={text_style}>
+                              <GithubOutlined />
+                         </span>
                          <span style={text_style}>
                               Github
                          </span>
                     </a>
                 </div>
                 <div style={text_style} >
-                    <QqOutlined />
+                    <span style={text_style}>
+                        <QqOutlined />
+                    </span>
                     <span style={text_style}>
                       QQ 2595331904
                     </span>
