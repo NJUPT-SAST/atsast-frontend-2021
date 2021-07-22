@@ -70,26 +70,26 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     },
     links: isDev
       ? [
-          <>
-            <LinkOutlined />
-            <span
-              onClick={() => {
-                window.open('/umi/plugin/openapi');
-              }}
-            >
-              openAPI 文档
-            </span>
-          </>,
-          <>
-            <BookOutlined />
-            <span
-              onClick={() => {
-                window.open('/~docs');
-              }}
-            >
-              业务组件文档
-            </span>
-          </>,
+          // <>
+          //   <LinkOutlined />
+          //   <span
+          //     onClick={() => {
+          //       window.open('/umi/plugin/openapi');
+          //     }}
+          //   >
+          //     openAPI 文档
+          //   </span>
+          // </>,
+          // <>
+          //   <BookOutlined />
+          //   <span
+          //     onClick={() => {
+          //       window.open('/~docs');
+          //     }}
+          //   >
+          //     业务组件文档
+          //   </span>
+          // </>,
         ]
       : [],
     menuHeaderRender: undefined,

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import request from 'umi-request';
-import reqwest from 'reqwest';
 const { Title, Paragraph, Text, Link } = Typography;
 const CardStyle = {
   height: '150px',
