@@ -116,6 +116,12 @@
         icon: 'dashboard',
         component: './SuperAdministrator/DashBoard',
       },
+      {
+        path: '/super-admin/end-vetting',
+        name: '结束审批',
+        icon: 'dashboard',
+        component: './SuperAdministrator/EndVetting',
+      },
     ],
   },
   {

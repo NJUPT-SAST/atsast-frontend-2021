@@ -13,12 +13,17 @@ function CompetitionState() {
           <a href="/admin">管理页</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/admin/competition-list/">比赛列表</a>
+          <a href="/admin/competition-list">比赛列表</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href="/admin/competition-list/competition-state">比赛状态</a>
+          <a href="/admin/competition-list/end-competition">结束比赛审核</a>
         </Breadcrumb.Item>
       </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="结束比赛审核"
+        subTitle="结束比赛审核页面"
+      />
       <Card>
         <Text>导出材料</Text>
         <Button type="primary">导出报销所需材料</Button>

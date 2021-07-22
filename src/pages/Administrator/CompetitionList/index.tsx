@@ -1,6 +1,8 @@
 import React from 'react';
 import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import request from 'umi-request';
+import reqwest from 'reqwest';
 const { Title, Paragraph, Text, Link } = Typography;
 const CardStyle = {
   height: '150px',
@@ -46,7 +48,7 @@ class ComCol extends React.Component {
                 <a href="">修改</a>,
                 <a href="/admin/competition-list/competition-state">状态</a>,
                 <a href="/admin/competition-list/judge-management">评委</a>,
-                <a href="/admin/competition-list/end-competition">结束</a>,
+                <a href="">结束</a>,
               ]}
             >
               <Title level={3}>
