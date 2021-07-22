@@ -48,7 +48,7 @@ class ComCol extends React.Component {
                 <a href="">修改</a>,
                 <a href="/admin/competition-list/competition-state">状态</a>,
                 <a href="/admin/competition-list/judge-management">评委</a>,
-                <a href="">结束</a>,
+                <a href="/admin/competition-list/end-competition">结束</a>,
               ]}
             >
               <Title level={3}>

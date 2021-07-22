@@ -1,19 +1,18 @@
 import React from 'react';
 /* 以下是面包屑 */
 import { Col, Row, Space, Breadcrumb, PageHeader } from 'antd';
-import { Divider } from 'antd';
 /* 以下是卡片 */
 import { Card } from 'antd';
 import { Switch } from 'antd';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { Popover, Button } from 'antd';
 import { Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 /* 以下是富文本和状态栏 */
-import { Drawer, Form, Select, DatePicker, Input, Radio } from 'antd';
-import { MinusCircleOutlined, PlusOutlined, DownloadOutlined } from '@ant-design/icons';
+import { Drawer, Form, Select, Input } from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 /* 以下是生成邀请链接-报名阶段 */
 import { Typography } from 'antd';
+
 const { Title, Paragraph, Text, Link } = Typography;
 const content1 = (
   <div>
