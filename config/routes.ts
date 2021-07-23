@@ -45,17 +45,30 @@
     icon: 'bulb',
     component: './Lecture',
   },
+  // 个人信息页 路由并非由此进入
+  // {
+  //   path: '/personalInformation',
+  //   name: '个人信息',
+  //   icon: 'bulb',
+  //   component: './PersonalInformation',
+  // },
   {
-    path: '/personalInformation',
-    name: '个人信息',
-    icon: 'bulb',
-    component: './PersonalInformation',
-  },
-  {
-    path: '/judgeDetail',
-    name: '评审详情页',
-    icon: 'bulb',
-    component: './JudgeDetail',
+    path: '/judge',
+    name: '评审页',
+    icon: 'code',
+    access: 'canAdmin',
+    routes: [
+      {
+        path: '/judge/judge-list',
+        name: '评审列表',
+        icon: 'bulb',
+        component: './Judge/JudgeList',
+      },
+      {
+        path: '/judge/judge-list/judge-detail',
+        component: './Judge/JudgeList/JudgeDetail',
+      },
+    ],
   },
   {
     path: '/personalInformation/SignUp',

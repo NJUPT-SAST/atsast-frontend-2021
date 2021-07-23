@@ -4,24 +4,21 @@ import { Form, Input, Button, Row } from 'antd';
 import Col from 'antd/es/grid/col';
 import { Radio } from 'antd';
 import { Select } from 'antd';
-import { Divider } from 'antd';
-import { useState } from 'react';
-import styles from './index.less'
-/*比赛流程-多元复合 */
+/* 比赛流程-多元复合 */
 import { DatePicker } from 'antd';
 import { Space } from 'antd';
-import { MinusCircleOutlined, PlusOutlined, ReadOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
-/*上传引入 */
+/* 上传引入 */
 import { Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 
 /**/
 import { Typography, Breadcrumb, PageHeader, } from 'antd';
-/*限定团队最大最小人数*/
+/* 限定团队最大最小人数 */
 import { InputNumber } from 'antd';
 
-const { Title, Paragraph, Text, Link } = Typography;
+
 
 const Demo = () => {
   const onFinish = (values: any) => {
@@ -397,7 +394,7 @@ function CreatCompetition() {
           </p>
         </Dragger>
       </Card>
-      {/* 这里是校内横幅*/}
+      {/* 这里是校内横幅 */}
       <Card hoverable>
         <Row>
           <Col span={22}>
@@ -411,7 +408,7 @@ function CreatCompetition() {
           </Col>
         </Row>
       </Card>
-      {/* 这里是比赛详情简介*/}
+      {/* 这里是比赛详情简介 */}
       <Card hoverable>
         <h3>比赛详情</h3>
         <TextArea rows={6} />
