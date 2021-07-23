@@ -115,6 +115,10 @@
         path: '/admin/competition-list/end-competition',
         component: './Administrator/CompetitionList/EndCompetition',
       },
+      {
+        path: '/admin/competition-list/competition-edit',
+        component: './Administrator/CompetitionEdit',
+      },
     ],
   },
   {

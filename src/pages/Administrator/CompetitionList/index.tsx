@@ -70,7 +70,7 @@ class ComCol extends React.Component {
           <Col xs={24} md={12} xl={8}>
             <Card style={CardStyle} hoverable
               actions={[
-                <a href="">修改</a>,
+                <a href="/admin/competition-list/competition-edit">修改</a>,
                 <a href="/admin/competition-list/competition-state">状态</a>,
                 <a href="/admin/competition-list/judge-management">评委</a>,
                 <a href="">结束</a>,
