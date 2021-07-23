@@ -117,16 +117,16 @@
         component: './SuperAdministrator/DashBoard',
       },
       {
-        path: '/super-admin/end-vetting',
-        name: '结束审批',
-        icon: 'dashboard',
-        component: './SuperAdministrator/EndVetting',
-      },
-      {
         path: '/super-admin/create-approval',
         name: '创建审批',
         icon: 'form',
         component: './SuperAdministrator/CreateApproval',
+      },
+      {
+        path: '/super-admin/end-vetting',
+        name: '结束审批',
+        icon: 'check-circle',
+        component: './SuperAdministrator/EndVetting',
       },
     ],
   },
