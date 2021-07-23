@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import request from 'umi-request';
-import reqwest from 'reqwest';
 const { Title, Paragraph, Text, Link } = Typography;
 const CardStyle = {
   height: '150px',
@@ -14,17 +12,44 @@ const NewStyle = {
 
 class ComCol extends React.Component {
   state = {
-    list: [
-      {
-        contestId: "",
-        contestName: "",
-        contestOrganizer: "",
-        contestTime: "",
-        contestTimeEnd: "",
-        contestType: "",
-        currStu: "",
-      }
-    ]
+    list: {
+      success: "",
+      errMsg: "",
+      errCode: "",
+      data: [
+        {
+          contestId: "",
+          masterUid: "",
+          contestName: "",
+          description: "",
+          currAdmin: "",
+          isTeam: "",
+          isJoin: "",
+          comment: "",
+          pushlink: "",
+          contestOrganizer: "",
+          contestHost: "",
+          contestHelper: "",
+          currStu: "",
+          banners: "",
+          teamGroup: "",
+          subjectCategory: "",
+          workCategory: "",
+          joinGrade: "",
+          isInstructor: "",
+          enable: "",
+          judging: "",
+          minMember: "",
+          maxMember: "",
+          minInstructor: "",
+          maxInstructor: "",
+          isTech: "",
+          contestType: "",
+          stageTemps: "",
+          stages: "",
+        }
+      ]
+    }
   }
   componentDidMount() {
     fetch('https://yapi.sast.fun/mock/13/user/contestlist/', {
@@ -41,7 +66,7 @@ class ComCol extends React.Component {
 
     return (
       <>
-        {this.state.list.map(data => (
+        {this.state.list.data.map(data => (
           <Col xs={24} md={12} xl={8}>
             <Card style={CardStyle} hoverable
               actions={[
