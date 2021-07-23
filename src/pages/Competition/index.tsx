@@ -129,7 +129,7 @@ export default (): React.ReactNode => {
           <Radio.Button value="d">综合类</Radio.Button>
         </Radio.Group>
       </Card>
-      <Collapse defaultActiveKey={['1']} ghost bordered={false}>
+      <Collapse ghost bordered={false}>
         <Panel header="其他选项" key="1">
           <Card bordered={false}>
             <text>主办方：</text>
