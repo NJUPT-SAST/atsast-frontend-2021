@@ -190,7 +190,7 @@ const Demo1 = () => {
           </>
         )}
       </Form.List>
-      
+
     </Form>
   );
 };
@@ -237,7 +237,7 @@ const Demo7 = () => {
 
   return (
     <Space>
-       <text>最多人数</text>
+      <text>最多人数</text>
       <InputNumber min={1} max={10} value={value} onChange={setValue} />
     </Space>
   );
@@ -248,19 +248,19 @@ const Demo7 = () => {
 function CreatCompetition() {
   return (
     <div>
-       <Breadcrumb>
-      <Breadcrumb.Item>Home</Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <a href="http://localhost:8000/competition">比赛</a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <a href="http://localhost:8000/admin">管理员</a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <a href="http://localhost:8000/admin/competition-list">比赛列表</a>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>比赛编辑</Breadcrumb.Item>
-    </Breadcrumb>
+      <Breadcrumb>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="http://localhost:8000/competition">比赛</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="http://localhost:8000/admin">管理员</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="http://localhost:8000/admin/competition-list">比赛列表</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>比赛编辑</Breadcrumb.Item>
+      </Breadcrumb>
       <PageHeader
         className="site-page-header"
         title="比赛编辑"
@@ -372,7 +372,7 @@ function CreatCompetition() {
               <App4 />
             </Col>
             <Col>
-             <Demo6 /> <Demo7/>
+              <Demo6 /> <Demo7 />
 
             </Col>
           </Row>
@@ -419,23 +419,19 @@ function CreatCompetition() {
         <TextArea rows={6} />
       </Card>
       <Card hoverable>
-      
         <Row>
           <Col span={11}>
-            
           </Col>
           <Col span={12}>
-          <Form.Item>
-          <Button type="primary" htmlType="submit">
-           修改比赛
-          </Button>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                修改比赛
+              </Button>
             </Form.Item>
           </Col>
           <Col >
-            
           </Col>
         </Row>
-        
       </Card>
     </div>
   );

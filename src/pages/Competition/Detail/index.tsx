@@ -6,29 +6,21 @@ const { Title } = Typography;
 const { Step } = Steps;
 
 const tagsData = ['校科协', '计软网安院科协',];
-const StepNow = 3
-const StepData = [
-  ['报名时间', '1919.8.10'],
-  ['比赛时间', '2019.9.10'],
-  ['比赛结束'],
-  ['123'],
-  ['12345']];
 
-/* eslint max-classes-per-file: ["error", 2] */
-class Units extends React.Component {
-  render() {
-    return (
-      <>
-        <span style={{ marginRight: 8 }}>主办单位:</span>
-        {tagsData.map(tag => (
-          <Tag color="blue">
-            {tag}
-          </Tag>
-        ))}
-      </>
-    );
-  }
-}
+// class Units extends React.Component {
+//   render() {
+//     return (
+//       <>
+//         <span style={{ marginRight: 8 }}>主办单位:</span>
+//         {tagsData.map(tag => (
+//           <Tag color="blue">
+//             {tag}
+//           </Tag>
+//         ))}
+//       </>
+//     );
+//   }
+// }
 class StepTag extends React.Component {
   state = {
     list: {
@@ -68,33 +60,99 @@ class StepTag extends React.Component {
         {console.log(this.state.list)}
         <Steps current={this.state.list.currentStage.stageId}>
           {this.state.list.stages.map(data => (
-            <Step title={data.stageName} description={data.stageTimes.stageBegin+"——"+data.stageTimes.stageEnd} />
+            <Step title={data.stageName} description={data.stageTimes.stageBegin + "——" + data.stageTimes.stageEnd} />
           ))}
         </Steps>
       </>
     );
   }
 }
-export default (): React.ReactNode => {
+
+class Apps extends React.Component {
+  state = {
+    list: {
+      success: "",
+      errMsg: "",
+      errCode: "",
+      data: {
+        contestId: "",
+        masterUid: "",
+        contestName: "",
+        description: "",
+        currAdmin: "",
+        isTeam: "",
+        isJoin: "",
+        comment: "",
+        pushlink: "",
+        contestOrganizer: "",
+        contestHost: "",
+        contestHelper: "",
+        currStu: "",
+        banners: "",
+        teamGroup: "",
+        subjectCategory: "",
+        workCategory: "",
+        joinGrade: "",
+        isInstructor: "",
+        enable: "",
+        judging: "",
+        minMember: "",
+        maxMember: "",
+        minInstructor: "",
+        maxInstructor: "",
+        isTech: "",
+        contestType: "",
+        stageTemps: "",
+        stages: "",
+      }
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://yapi.sast.fun/mock/13/user/contestInfo', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list: json });
+      })
+  }
+
+  render() {
+    return (
+      <>
+        <Card>
+          <Title>{this.state.list.data.contestName}</Title>
+          <span style={{ marginRight: 8 }}>主办单位:</span>
+          <Tag color="blue">
+             {this.state.list.data.contestOrganizer}
+           </Tag>
+          <Card>
+            <StepTag />
+          </Card>
+          <Card>
+            <Space>
+              <Button type="primary" href="/welcome" target="_blank" >比赛报名</Button>
+              <Button type="primary" href="/welcome" target="_top" >我的状态</Button>
+            </Space>
+          </Card>
+          <Card bordered={false}>
+            <Title level={2}>比赛简介</Title>
+          {this.state.list.data.description}
+          </Card>
+        </Card>
+      </>
+    );
+  }
+}
+
+
+function CompetitionDetail() {
   return (
-    <PageContainer>
-      <Card>
-        <Title>蓝桥杯程序设计大赛</Title>
-        <Units />
-        <Card>
-          <StepTag />
-        </Card>
-        <Card>
-          <Space>
-            <Button type="primary" href="/welcome" target="_blank" >比赛报名</Button>
-            <Button type="primary" href="/welcome" target="_top" >我的状态</Button>
-          </Space>
-        </Card>
-        <Card bordered={false}>
-          <Title level={2}>比赛简介</Title>
-          //富文本
-        </Card>
-      </Card>
-    </PageContainer>
+    <div>
+      <Apps />
+    </div>
   );
-};
+}
+
+export default CompetitionDetail;

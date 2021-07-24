@@ -74,13 +74,38 @@ for (let i = 0; i < 46; i++) {
 
 class App extends React.Component {
   state = {
-    selectedRowKeys: [], // Check here to configure the default column
+    selectedRowKeys: [], 
+    // list: {
+    //   data: [
+    //     {
+    //       judgeName:"",
+    //       judgeId:"",
+    //       faculty:"",
+    //       judgeStage:"",
+    //       judgeCurr:"",
+    //       judgeTotal:"",
+    //     }
+    //   ]
+    // }
   };
   onSelectChange = selectedRowKeys => {
     // eslint-disable-next-line no-console
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
+
+  // componentDidMount() {
+  //   fetch('https://yapi.sast.fun/mock/13/admin/judgelist', {
+  //     method: 'get',
+  //     // mode: 'cors',
+  //   })
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       this.setState({ list: json });
+  //       // console.log(this.state.list);
+  //     })
+  // }
+
   render() {
     const { selectedRowKeys } = this.state;
     const rowSelection = {
