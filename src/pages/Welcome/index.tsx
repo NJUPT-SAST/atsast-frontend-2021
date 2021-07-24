@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
-import UserName from './UserName';
 import './index.less'
 import axios from 'axios'
+
+const { Text } = Typography;
 
 // axios({
 //   method: 'get',
@@ -104,8 +105,46 @@ export default (): React.ReactNode => {
 
   //   const ree=re;
 
-    
+  class Name extends React.Component {
+    state = {
+      list: {
+            uid: "",
+            realName: "",
+            stuId: "",
+            phone: "",
+            faculty: "",
+            personId: "",
+            major: "",
+            qq: "",
+            wx: "",
+            politicalStatus: "",
+            dormitoryNumber: "",
+            hometown: "",
+            enable: "",
+          }
+    }
+  
 
+  componentDidMount() {
+    fetch('http://pipe.sast.codes:7566/mock/13/user/selfinfo', {
+      method: 'get',
+      // mode: 'cors',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list: json });
+        // console.log(this.state.list);
+      })
+  }
+
+  render() {
+    return (
+      <>
+          <Text>{this.state.list.realName}</Text>
+      </>
+    );
+  }
+}
 
   return (
     <div>
@@ -114,7 +153,7 @@ export default (): React.ReactNode => {
         <Col span={14}>
           <Card >
             {/* <Row><text>{ree}</text></Row> */}
-            <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
+            <Typography.Title level={4}><Name/><p>{greeting(nowDate.getHours())}</p></Typography.Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
           <Carousel autoplay effect="fade">

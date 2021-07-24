@@ -51,6 +51,7 @@ class ComCol extends React.Component {
       ]
     }
   }
+  
   componentDidMount() {
     fetch('https://yapi.sast.fun/mock/13/user/contestlist/', {
       method: 'get',
@@ -62,8 +63,8 @@ class ComCol extends React.Component {
         // console.log(this.state.list);
       })
   }
-  render() {
 
+  render() {
     return (
       <>
         {this.state.list.data.map(data => (
@@ -86,6 +87,7 @@ class ComCol extends React.Component {
     );
   }
 }
+
 function CompetitionList() {
   return (
     <div>
