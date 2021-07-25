@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
-import './index.less'
 import axios from 'axios'
+import './index.less';
 
-const { Text } = Typography;
-
-// axios({
-//   method: 'get',
-//   url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
-//   params: {
-//     // id: 12345,
-//   }
-// })
-//   .then(function (response) {
-//     console.log(response);
-//     // document.getElementById("test1").innerHTML=qqq;
-//   });
-
+const { Title } = Typography;
+const { Grid } = Card;
 
 // 获取当前日期
 const nowDate = new Date();
@@ -57,15 +45,6 @@ function greeting(hour: number) {
   return words
 }
 
-/* 跑马灯文本格式 */
-// const contentStyle = {
-//   height: '450px',
-//   color: '#fff',
-//   lineHeight: '450px',  // 内嵌字符height
-//   textAlign: 'center',
-//   background: '#364d79'
-// };
-
 /* Row间Height（通用） */
 const rowHeightStyle = {
   height: '16px'
@@ -87,63 +66,21 @@ export default (): React.ReactNode => {
     setIsModalVisible(false);
   };
 
-  // let [re,setRe]=useState(0);
+// 调用API显示用户名
+function Name(){
+  const [data,setData]=useState(0);
 
-  // axios({
-  //   method: 'get',
-  //   url: 'http://pipe.sast.codes:7566/mock/13/user/selfinfo',
-  //   params: {
-  //     // id: 12345,
-  //   }
-  // })
-  //   .then(function (response) {
-  //     console.log(response);
-  //     re=response.data.uid;
-  //     setRe(re);
-  //     // document.getElementById("test1").innerHTML=qqq;
-  //   });
-
-  //   const ree=re;
-
-  class Name extends React.Component {
-    state = {
-      list: {
-            uid: "",
-            realName: "",
-            stuId: "",
-            phone: "",
-            faculty: "",
-            personId: "",
-            major: "",
-            qq: "",
-            wx: "",
-            politicalStatus: "",
-            dormitoryNumber: "",
-            hometown: "",
-            enable: "",
-          }
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios('http://pipe.sast.codes:7566/mock/13/user/selfinfo')
+      setData(result.data.realName);
     }
-  
+    fetchData();
+  }, []);
 
-  componentDidMount() {
-    fetch('http://pipe.sast.codes:7566/mock/13/user/selfinfo', {
-      method: 'get',
-      // mode: 'cors',
-    })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ list: json });
-        // console.log(this.state.list);
-      })
-  }
-
-  render() {
-    return (
-      <>
-          <Text>{this.state.list.realName}</Text>
-      </>
-    );
-  }
+  return (
+    <Title level={4}><p>{data}</p></Title>
+  );
 }
 
   return (
@@ -152,8 +89,8 @@ export default (): React.ReactNode => {
         <Col span={2}></Col>
         <Col span={14}>
           <Card >
-            {/* <Row><text>{ree}</text></Row> */}
-            <Typography.Title level={4}><Name/><p>{greeting(nowDate.getHours())}</p></Typography.Title>
+            <Row><Name/></Row>
+            <Title level={4}><p>{greeting(nowDate.getHours())}</p></Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
           <Carousel autoplay effect="fade">
@@ -176,24 +113,24 @@ export default (): React.ReactNode => {
           <Row style={rowHeightStyle}></Row>
           <div className="nearestAct">
             <Card title="最新活动" bordered={false} extra={<a href="#">更多活动</a>}>
-              <Card.Grid style={gridStyle} >
+              <Grid style={gridStyle} >
                 <Meta
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                   title="技术沙龙-c语言急救车"
                   description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
-              </Card.Grid>
-              <Card.Grid style={gridStyle} >
+              </Grid>
+              <Grid style={gridStyle} >
                 <Meta
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                   title="技术沙龙-c语言急救车"
                   description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
-              </Card.Grid>
-              <Card.Grid style={gridStyle} >
+              </Grid>
+              <Grid style={gridStyle} >
                 <Meta
                   avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                   title="技术沙龙-c语言急救车"
                   description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
-              </Card.Grid>
+              </Grid>
             </Card>
           </div>
         </Col>

@@ -1,47 +1,14 @@
 import React from 'react';
-import {
-  Card,
-  Input,
-  Space,
-  Radio,
-  Pagination,
-  DatePicker,
-  Button,
-  Select,
-  Typography,
-  Carousel,
-  Collapse,
-  Col,
-  Row,
-} from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
+import { Card, Input, Space, Radio, Pagination, Select, Carousel, Collapse, Row } from 'antd';
 import type { SelectProps } from 'antd/es/select';
-import type { OptionsType } from 'rc-select/lib/interface';
+import CompetitionCard from '@/components/CompetitionCard';
 import './index.less';
-
-// 跑马灯格式
-const contentStyle = {
-  height: '450px',
-  color: '#fff',
-  lineHeight: '450px', // 内嵌字符height
-  textAlign: 'center',
-  background: '#364d79',
-};
 
 // 搜索栏相关
 const { Search } = Input;
 
 // 折叠菜单相关
 const { Panel } = Collapse;
-
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
 
 // eslint-disable-next-line no-console
 const onSearch = (value: any) => console.log(value);
@@ -52,40 +19,16 @@ export interface DebounceSelectProps<ValueType = any>
   debounceTimeout?: number;
 }
 
-// 标签选择相关
-const { Title } = Typography;
-
-const options = ['test1','test2']
-
-function handleChange(value: any) {
-  // eslint-disable-next-line no-console
-  console.log(`selected ${value}`);
-}
-
-// 日期选择相关
-const { RangePicker } = DatePicker;
-
 // 底部翻页相关
 function onChange(pageNumber: any) {
   // eslint-disable-next-line no-console
   console.log('Page: ', pageNumber);
 }
 
-// 赛程相关
-const App = () => (
-  <Radio.Group name="radiogroup" defaultValue={1}>
-    <Radio value={1}>A</Radio>
-    <Radio value={2}>B</Radio>
-  </Radio.Group>
-);
-
 /* Row间Height（通用） */
 const rowHeightStyle = {
   height: '16px',
 };
-
-// const { selectedItems } = this.state;
-// const filteredOptions = OPTIONS.filter(o => !selectedItems.includes(o));
 
 export default (): React.ReactNode => {
   return (
@@ -151,6 +94,7 @@ export default (): React.ReactNode => {
           </Card>
         </Panel>
       </Collapse>
+      <CompetitionCard/>
       <Row style={rowHeightStyle}></Row>
       <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
     </div>

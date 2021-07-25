@@ -1,20 +1,15 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Pagination, Space, Card,Input,Form,  DatePicker,
-  Button,
-  Typography,
-  Row,
-  Col,
-} from 'antd';
+import { Card, Input, Form, Button, Row, Col } from 'antd';
+import type { SelectProps } from 'antd/es/select';
 
-import { AudioOutlined } from '@ant-design/icons';
-import { SelectProps } from 'antd/es/select';
-
-//表单组件相关
+// 表单组件相关
 const onFinish = (values: any) => {
+  // eslint-disable-next-line no-console
   console.log('Success:', values);
 };
 const onFinishFailed = (errorInfo: any) => {
+  // eslint-disable-next-line no-console
   console.log('Failed:', errorInfo);
 };
 
@@ -24,10 +19,8 @@ export interface DebounceSelectProps<ValueType = any>
   debounceTimeout?: number;
 }
 
-// 标签选择相关
-const { Title } = Typography;
-
 const options = [];
+// eslint-disable-next-line no-plusplus
 for (let i = 0; i < 100000; i++) {
   const value = `${i.toString(36)}${i}`;
   options.push({
@@ -36,22 +29,9 @@ for (let i = 0; i < 100000; i++) {
   });
 }
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
-} //这步是在？
-
-// 底部翻页相关
-function onChange(pageNumber) {
-  console.log('Page: ', pageNumber);
-}
-
 /* Row间Height（通用） */
 const rowHeightStyle = {
   height: '16px',
-};
-
-const bottomHeightStyle = {
-  height: '35px',
 };
 
 const { TextArea } = Input;
@@ -60,7 +40,7 @@ export default (): React.ReactNode => {
   return (
     <PageContainer>
       <Card title="材料">
-        <div id="materialInformation">{/* //此处存放材料        */}</div>
+        <div id="materialInformation">{/* 此处存放材料 */}</div>
       </Card>
       <div style={rowHeightStyle}></div>
       <Card title="评审">
@@ -79,16 +59,9 @@ export default (): React.ReactNode => {
           >
             <Input />
           </Form.Item>
-
           <Form.Item label="评语：" name="comment" rules={[{ required: true, message: ' ' }]}>
             <TextArea rows={4} />
           </Form.Item>
-
-          {/* <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item> */}
         </Form>
       </Card>
       <div style={rowHeightStyle}></div>
