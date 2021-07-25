@@ -46,12 +46,12 @@
     component: './Lecture',
   },
   // 个人信息页 路由并非由此进入
-  // {
-  //   path: '/personalInformation',
-  //   name: '个人信息',
-  //   icon: 'bulb',
-  //   component: './PersonalInformation',
-  // },
+  {
+    path: '/personalIn-formation',
+    // name: '个人信息',
+    // icon: 'bulb',
+    component: './PersonalInformation',
+  },
   {
     path: '/judge',
     name: '评审页',

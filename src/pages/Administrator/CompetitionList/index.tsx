@@ -51,7 +51,6 @@ class ComCol extends React.Component {
       ]
     }
   }
-  
   componentDidMount() {
     fetch('https://yapi.sast.fun/mock/13/user/contestlist/', {
       method: 'get',
@@ -63,15 +62,15 @@ class ComCol extends React.Component {
         // console.log(this.state.list);
       })
   }
-
   render() {
+
     return (
       <>
         {this.state.list.data.map(data => (
           <Col xs={24} md={12} xl={8}>
             <Card style={CardStyle} hoverable
               actions={[
-                <a href="/admin/competition-list/competition-edit">修改</a>,
+                <a href="">修改</a>,
                 <a href="/admin/competition-list/competition-state">状态</a>,
                 <a href="/admin/competition-list/judge-management">评委</a>,
                 <a href="">结束</a>,
@@ -87,7 +86,6 @@ class ComCol extends React.Component {
     );
   }
 }
-
 function CompetitionList() {
   return (
     <div>
