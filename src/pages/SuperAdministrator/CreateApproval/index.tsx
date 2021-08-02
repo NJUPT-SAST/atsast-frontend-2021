@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader  , Divider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
 class Detail extends React.Component {
@@ -9,41 +9,39 @@ class Detail extends React.Component {
       errMsg: "",
       errCode: "",
       data: {
-        contestId: "",
-        masterUid: "",
         contestName: "",
         description: "",
-        currAdmin: "",
-        isTeam: "",
-        isJoin: "",
-        comment: "",
-        pushlink: "",
         contestOrganizer: "",
         contestHost: "",
         contestHelper: "",
-        currStu: "",
-        banners: "",
+        isTeam: "",
         teamGroup: "",
-        subjectCategory: "",
-        workCategory: "",
         joinGrade: "",
         isInstructor: "",
-        enable: "",
-        judging: "",
+        workCategory: "",
+        subjectCategory: "",
         minMember: "",
         maxMember: "",
         minInstructor: "",
         maxInstructor: "",
-        isTech: "",
-        contestType: "",
-        stageTemps: "",
-        stages: "",
+        stages: [
+          {
+            stageName: "",
+            stageType: "",
+            stageBegin: "",
+            stageEnd: "",
+          }
+        ],
+        fileUrl: "",
+        banners: [
+          "",
+        ]
       }
     }
   }
 
   componentDidMount() {
-    fetch('https://yapi.sast.fun/mock/13/user/contestInfo', {
+    fetch('https://yapi.sast.fun/mock/13/superadmin/check', {
       method: 'get',
     })
       .then(res => res.json())
@@ -102,7 +100,7 @@ class Detail extends React.Component {
               <h3>赛制</h3>
             </Col>
             <Col span={13}>
-              <h3>{this.state.list.data.contestType}</h3>
+              <h3>{this.state.list.data.isTeam}</h3>
             </Col>
           </Row>
         </Card>
@@ -153,6 +151,16 @@ class Detail extends React.Component {
             <Col span={11}>
               <h3>比赛流程</h3>
             </Col>
+            <Col span={13}>
+              {this.state.list.data.stages.map(stages => (
+                <>
+                  <h3>阶段名称：{stages.stageName}</h3>
+                  <h3>阶段类型：{stages.stageType}</h3>
+                  <h3>时间：{stages.stageBegin} —— {stages.stageEnd}</h3>
+                  <Divider />
+                </>
+              ))}
+            </Col>
           </Row>
         </Card>
         <Card hoverable>
@@ -161,7 +169,7 @@ class Detail extends React.Component {
               <h3>比赛策划案</h3>
             </Col>
             <Col span={13}>
-              <Button type="primary">
+              <Button type="primary" target={this.state.list.data.fileUrl}>
                 查看
               </Button>
             </Col>
@@ -173,8 +181,10 @@ class Detail extends React.Component {
               <h3>横幅内容</h3>
             </Col>
             <Col span={13}>
-                <h3>{this.state.list.data.banners}</h3>
-              </Col>
+              {this.state.list.data.banners.map(banners => (
+                <h3>{banners}</h3>
+              ))}
+            </Col>
           </Row>
         </Card>
         <Card hoverable>

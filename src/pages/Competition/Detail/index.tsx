@@ -5,7 +5,7 @@ import { Card, Typography, Tag, Steps, Button, Space } from 'antd';
 const { Title } = Typography;
 const { Step } = Steps;
 
-const tagsData = ['校科协', '计软网安院科协',];
+// const tagsData = ['校科协', '计软网安院科协',];
 
 // class Units extends React.Component {
 //   render() {

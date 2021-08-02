@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
+import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader, Divider } from 'antd';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
 
 const { Text } = Typography;
@@ -16,7 +16,7 @@ const columns = [
   {
     title: '评审进度',
     dataIndex: 'progress',
-    sorter: (a, b) => (a.a/a.b) - (b.a/b.b),
+    sorter: (a, b) => (a.a / a.b) - (b.a / b.b),
   },
   {
     title: '状态',
@@ -51,7 +51,7 @@ const columns = [
     render: () => (
       <Space size="middle">
         <a href="/admin/competition-list/judge-management/judge-authorization">授权</a>
-        |
+        <Divider type="vertical" />
         <a>删除</a>
       </Space>
     ),
@@ -64,17 +64,17 @@ for (let i = 0; i < 46; i++) {
     key: i,
     name: `Edward King ${i}`,
     college: 'huangx英才学院',
-    a: `${i+1}`,
-    b: `${i+5}`,
-    progress: `${i+1}/${i+5}`,
+    a: `${i + 1}`,
+    b: `${i + 5}`,
+    progress: `${i + 1}/${i + 5}`,
     state: '评审中',
-    id: `${20030101+i}`,
+    id: `${20030101 + i}`,
   });
 }
 
 class App extends React.Component {
   state = {
-    selectedRowKeys: [], 
+    selectedRowKeys: [],
     // list: {
     //   data: [
     //     {

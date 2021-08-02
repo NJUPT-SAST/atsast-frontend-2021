@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader, Modal, Upload, message,} from 'antd';
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader, Modal, Upload, message, } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 const CardStyle = {
   height: '150px',
@@ -35,7 +35,6 @@ class ComCol extends React.Component {
       errCode: "",
       data: [
         {
-          contestId: "",
           masterUid: "",
           contestName: "",
           description: "",
@@ -62,15 +61,15 @@ class ComCol extends React.Component {
           maxInstructor: "",
           isTech: "",
           contestType: "",
-          stageTemps: "",
           stages: "",
+          fileUrl: "",
         }
       ]
     }
 
   }
   componentDidMount() {
-    fetch('https://yapi.sast.fun/mock/13/user/contestlist/', {
+    fetch('https://yapi.sast.fun/mock/13/superadmin/list', {
       method: 'get',
       // mode: 'cors',
     })
@@ -126,7 +125,7 @@ class Invite extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.setState({ list: json });
-        console.log(this.state);
+        // console.log(this.state);
       })
   }
   setModalVisible(modalVisible) {
