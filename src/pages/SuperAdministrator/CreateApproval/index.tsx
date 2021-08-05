@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader  , Divider } from 'antd';
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader, Divider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
 class Detail extends React.Component {
@@ -48,8 +48,52 @@ class Detail extends React.Component {
       .then(json => {
         this.setState({ list: json });
       })
+    // fetch(url, {
+    //   //请求方式
+    //   method: 'POST',
+    //   //将请求的参数转成json
+    //   body: JSON.stringify(param),
+    //   //请求头
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   }
+    //   // 请求的返回值
+    // }).then(function (response) {
+    //   if (response.status === 200) {
+    //     response.json().then(function (data) {
+    //       //获取请求的返回字段
+    //       console.log(data);
+    //       console.log(data.flag);
+    //       console.log(data.message);
+    //       console.log(data.data)
+    //     })
+    //   } else {
+    //     alert("出现一个问题");
+    //   }
+
+    // })
   }
 
+
+  handleClick = () => {
+    fetch('http://pipe.sast.codes:7566/mock/13/superadmin/check/1', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify({
+        result: '1',
+        comment: '',
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list1: json });
+        console.log(this.state.list1);
+      })
+
+  }
   render() {
     return (
       <>
@@ -67,6 +111,9 @@ class Detail extends React.Component {
           subTitle="创建审批页面"
         />
         <Card hoverable>
+          {/* <button onClick={this.handleClick}>
+            Click me
+          </button> */}
           <Row gutter={[36, 18]}>
             <Col span={11}>
               <h3>比赛名称</h3>
@@ -204,7 +251,7 @@ class Detail extends React.Component {
             <Col span={11}>
             </Col>
             <Col span={12}>
-              <Button danger>
+              <Button danger onClick={this.handleClick}>
                 打回
               </Button>
             </Col>

@@ -1,14 +1,12 @@
 import React from 'react';
-import { Card, Input, Space, Radio, Pagination, Select, Carousel, Collapse, Row } from 'antd';
+import { Card, Input, Space, Radio, Select, Carousel, Collapse, Row, List, Avatar, Col, } from 'antd';
 import type { SelectProps } from 'antd/es/select';
-import CompetitionCard from '@/components/CompetitionCard';
+import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import './index.less';
 
 // 搜索栏相关
 const { Search } = Input;
 
-// 折叠菜单相关
-const { Panel } = Collapse;
 
 // eslint-disable-next-line no-console
 const onSearch = (value: any) => console.log(value);
@@ -19,16 +17,19 @@ export interface DebounceSelectProps<ValueType = any>
   debounceTimeout?: number;
 }
 
-// 底部翻页相关
-function onChange(pageNumber: any) {
-  // eslint-disable-next-line no-console
-  console.log('Page: ', pageNumber);
+const listData = [];
+for (let i = 0; i < 23; i++) {
+  listData.push({
+    href: '/competition/detail',
+    title: `XXXX比赛 ${i}`,
+    description:
+      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    content:
+      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+  });
 }
 
-/* Row间Height（通用） */
-const rowHeightStyle = {
-  height: '16px',
-};
+
 
 export default (): React.ReactNode => {
   return (
@@ -50,7 +51,6 @@ export default (): React.ReactNode => {
           <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
         </div>
       </Carousel>
-      <Row style={rowHeightStyle}></Row>
       <Card>
         <Space direction="horizontal">
           <text>搜索：</text>
@@ -64,39 +64,80 @@ export default (): React.ReactNode => {
         </Space>
       </Card>
       <Card>
-        <text>所属类目：</text>
-        <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
-          <Radio.Button value="a">全部</Radio.Button>
-          <Radio.Button value="b">理工类</Radio.Button>
-          <Radio.Button value="c">社科类</Radio.Button>
-          <Radio.Button value="d">综合类</Radio.Button>
-        </Radio.Group>
+
+        <Space>
+          <text>所属类目：</text>
+          <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
+            <Radio.Button value="a">全部</Radio.Button>
+            <Radio.Button value="b">理工类</Radio.Button>
+            <Radio.Button value="c">社科类</Radio.Button>
+            <Radio.Button value="d">综合类</Radio.Button>
+          </Radio.Group>
+        </Space>
+
       </Card>
-      <Collapse ghost bordered={false}>
-        <Panel header="其他选项" key="1">
-          <Card bordered={false}>
+      <Card>
+        <Space>
+          <span>
+            <text>其他选项：</text>
+          </span>
+          <span>
             <text>主办方：</text>
+          </span>
+          <span>
             <Select
-        mode="multiple"
-        placeholder="Inserted are removed"
-        style={{ width: '100%' }}
-      >
-      </Select>
-          </Card>
-          <Card bordered={false}>
+              mode="multiple"
+              placeholder="114514"
+              style={{ width: '150px' }}
+            >
+            </Select>
+          </span>
+          <span>
             <text>主办方：</text>
+          </span>
+          <span>
             <Select
-        mode="multiple"
-        placeholder="Inserted are removed"
-        style={{ width: '100%' }}
-      >
-      </Select>
-          </Card>
-        </Panel>
-      </Collapse>
-      <CompetitionCard/>
-      <Row style={rowHeightStyle}></Row>
-      <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
+              mode="multiple"
+              placeholder="114514"
+              style={{ width: '150px' }}
+            >
+            </Select>
+          </span>
+        </Space>
+      </Card>
+      <Card>
+        <List
+          itemLayout="vertical"
+          size="small"
+          pagination={{
+            onChange: page => {
+              console.log(page);
+            },
+            pageSize: 3,
+          }}
+          dataSource={listData}
+          renderItem={item => (
+            <List.Item
+              key={item.title}
+
+              extra={
+                <img
+                  width={272}
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+              }
+            >
+              <List.Item.Meta
+                title={<a href={item.href}>{item.title}</a>}
+                description={item.description}
+              />
+              {item.content}
+            </List.Item>
+          )}
+        />
+      </Card>
+
     </div>
   );
 };
