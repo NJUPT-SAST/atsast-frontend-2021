@@ -1,7 +1,8 @@
-import React from 'react';
-import { Card, Input, Space, Radio, Pagination, Select, Carousel, Collapse, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Input, Space, Radio, Pagination, Select, Carousel, Collapse, Row, Col } from 'antd';
 import type { SelectProps } from 'antd/es/select';
 import CompetitionCard from '@/components/CompetitionCard';
+import axios from 'axios';
 import './index.less';
 
 // 搜索栏相关
@@ -25,44 +26,58 @@ function onChange(pageNumber: any) {
   console.log('Page: ', pageNumber);
 }
 
-/* Row间Height（通用） */
-const rowHeightStyle = {
-  height: '16px',
-};
+function Name(){
+  const [data,setData]=useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios('https://yapi.sast.fun/mock/13/user/selfinfo')
+      setData(result.data.data.realName);
+      // eslint-disable-next-line no-console
+      console.log(result);
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <Col></Col>
+  );
+}
 
 export default (): React.ReactNode => {
   return (
     <div>
       <Carousel autoplay effect="fade">
         <div className="pic">
-          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg" />
         </div>
         <div className="pic">
-          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg" />
         </div>
         <div className="pic">
-          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg" />
         </div>
         <div className="pic">
-          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg" />
         </div>
         <div className="pic">
-          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
+          <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg" />
         </div>
       </Carousel>
-      <Row style={rowHeightStyle}></Row>
+      <Row style={{ height: '16px' }}></Row>
       <Card>
         <Space direction="horizontal">
-          <text>搜索：</text>
           <Search
             placeholder="input search text"
             allowClear
             enterButton="Search"
             size="middle"
+            style={{ width: '400px' }}
             onSearch={onSearch}
           />
         </Space>
       </Card>
+      <Row style={{ height: '16px' }}></Row>
       <Card>
         <text>所属类目：</text>
         <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
@@ -75,27 +90,35 @@ export default (): React.ReactNode => {
       <Collapse ghost bordered={false}>
         <Panel header="其他选项" key="1">
           <Card bordered={false}>
+            <Space>
             <text>主办方：</text>
             <Select
-        mode="multiple"
-        placeholder="Inserted are removed"
-        style={{ width: '100%' }}
-      >
-      </Select>
+              mode="multiple"
+              placeholder="Inserted are removed"
+              style={{ width: '350px' }}
+            />
+            </Space>
           </Card>
           <Card bordered={false}>
+            <Space>
             <text>主办方：</text>
             <Select
-        mode="multiple"
-        placeholder="Inserted are removed"
-        style={{ width: '100%' }}
-      >
-      </Select>
+              mode="multiple"
+              placeholder="Inserted are removed"
+              style={{ width: '350px' }}
+            />
+            </Space>
           </Card>
         </Panel>
       </Collapse>
-      <CompetitionCard/>
-      <Row style={rowHeightStyle}></Row>
+      <Row>
+        <Col span={4}/>
+        <Col span={16}>
+          <CompetitionCard />
+        </Col>
+        <Col span={4}/>
+      </Row>
+      <Row style={{ height: '16px' }}></Row>
       <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
     </div>
   );

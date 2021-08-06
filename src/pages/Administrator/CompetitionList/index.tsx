@@ -1,10 +1,12 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
+import { Typography, Row, Col, Card, Button, Breadcrumb, PageHeader } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-const { Title, Paragraph, Text, Link } = Typography;
+
+const { Title } = Typography;
 const CardStyle = {
   height: '150px',
 };
+
 const NewStyle = {
   height: '100px',
   textAlign: 'center',
@@ -45,8 +47,8 @@ class ComCol extends React.Component {
           maxInstructor: "",
           isTech: "",
           contestType: "",
-          stageTemps: "",
           stages: "",
+          fileUrl: "",
         }
       ]
     }
@@ -70,10 +72,10 @@ class ComCol extends React.Component {
           <Col xs={24} md={12} xl={8}>
             <Card style={CardStyle} hoverable
               actions={[
-                <a href="">修改</a>,
+                <a href="/admin/competition-list/competition-edit">修改</a>,
                 <a href="/admin/competition-list/competition-state">状态</a>,
                 <a href="/admin/competition-list/judge-management">评委</a>,
-                <a href="">结束</a>,
+                <a href="/admin/competition-list/end-competition">结束</a>,
               ]}
             >
               <Title level={3}>
@@ -86,6 +88,7 @@ class ComCol extends React.Component {
     );
   }
 }
+
 function CompetitionList() {
   return (
     <div>

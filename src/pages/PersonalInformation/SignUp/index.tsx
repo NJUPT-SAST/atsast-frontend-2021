@@ -32,7 +32,7 @@ const Demo = () => {
         <Input />
       </Form.Item>
 
-      { /* submit还是可以用一下的*/}
+      { /* submit还是可以用一下的 */}
 
     </Form>
   );

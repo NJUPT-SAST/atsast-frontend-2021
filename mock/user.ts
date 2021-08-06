@@ -135,15 +135,33 @@ export default {
       access = 'user';
       return;
     }
-    if (type === 'mobile') {
+    if (password === 'ant.design' && username === 'superAdmin') {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'admin',
+        currentAuthority: 'superAdmin',
       });
-      access = 'admin';
+      access = 'superAdmin';
       return;
     }
+    if (password === 'ant.design' && username === 'judge') {
+      res.send({
+        status: 'ok',
+        type,
+        currentAuthority: 'judge',
+      });
+      access = 'judge';
+      return;
+    }
+    // if (type === 'mobile') {
+    //   res.send({
+    //     status: 'ok',
+    //     type,
+    //     currentAuthority: 'admin',
+    //   });
+    //   access = 'admin';
+    //   return;
+    // }
 
     res.send({
       status: 'error',

@@ -17,14 +17,16 @@
   },
   {
     path: '/welcome',
-    name: 'welcome',
+    name: '首页',
     icon: 'smile',
+    // ccess: 'canUse',
     component: './Welcome',
   },
   {
     path: '/competition',
     name: '比赛',
     icon: 'flag',
+    access: 'canUse',
     component: './Competition',
   },
   {
@@ -43,6 +45,7 @@
     path: '/lecture',
     name: '授课',
     icon: 'bulb',
+    access: 'canUse',
     component: './Lecture',
   },
   // 个人信息页 路由并非由此进入
@@ -56,7 +59,7 @@
     path: '/judge',
     name: '评审页',
     icon: 'code',
-    access: 'canAdmin',
+    access: 'canJudge',
     routes: [
       {
         path: '/judge/judge-list',
@@ -125,7 +128,7 @@
     path: '/super-admin',
     name: '超级管理员',
     icon: 'crown',
-    access: 'canAdmin',
+    access: 'canSuperAdmin',
     routes: [
       {
         path: '/super-admin/dash-board',

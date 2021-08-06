@@ -56,24 +56,16 @@ const gridStyle = {
   textAlign: 'center',
 };
 
-// 组队对话框相关
-export default (): React.ReactNode => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
 // 调用API显示用户名
 function Name(){
   const [data,setData]=useState(0);
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios('http://pipe.sast.codes:7566/mock/13/user/selfinfo')
-      setData(result.data.realName);
+      const result = await axios('https://yapi.sast.fun/mock/13/user/selfinfo')
+      setData(result.data.data.realName);
+      // eslint-disable-next-line no-console
+      console.log(result);
     }
     fetchData();
   }, []);
@@ -82,6 +74,15 @@ function Name(){
     <Title level={4}><p>{data}</p></Title>
   );
 }
+
+export default (): React.ReactNode => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div>
