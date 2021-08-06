@@ -77,6 +77,7 @@ class ComCol extends React.Component {
       .then(json => {
         this.setState({ list: json });
         // console.log(this.state.list);
+        
       })
   }
   render() {

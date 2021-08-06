@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader, Divider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
-class Detail extends React.Component {
+class App extends React.Component {
   state = {
     list: {
       success: "",
@@ -111,9 +111,6 @@ class Detail extends React.Component {
           subTitle="创建审批页面"
         />
         <Card hoverable>
-          {/* <button onClick={this.handleClick}>
-            Click me
-          </button> */}
           <Row gutter={[36, 18]}>
             <Col span={11}>
               <h3>比赛名称</h3>
@@ -266,7 +263,7 @@ class Detail extends React.Component {
 function CreateApproval() {
   return (
     <div>
-      <Detail />
+      <App />
     </div>
   );
 }
