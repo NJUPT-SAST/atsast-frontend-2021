@@ -5,7 +5,7 @@ import { Card, Typography, Tag, Steps, Button, Space } from 'antd';
 const { Title } = Typography;
 const { Step } = Steps;
 
-const tagsData = ['校科协', '计软网安院科协',];
+// const tagsData = ['校科协', '计软网安院科协',];
 
 // class Units extends React.Component {
 //   render() {
@@ -24,24 +24,18 @@ const tagsData = ['校科协', '计软网安院科协',];
 class StepTag extends React.Component {
   state = {
     list: {
-      currentStage: {
-        stageType: "",
-        file: {
-          fileDescription: "",
-          fileLimit: "",
-        },
-        richText: "",
-        stageId: "",
-      },
-      stages: [
-        {
-          stageName: "",
-          stageTimes: {
-            stageBegin: "",
-            stageEnd: "",
-          },
-        }
-      ],
+      teamId: "",
+      memberUid: "",
+      enable: "",
+      leadberUid: "",
+      instructor: "",
+      instrutorId: "",
+      contestId: "",
+      teamName: "",
+      score: "",
+      result: "",
+      teamGroup: "",
+      subjectCategory: "",
     }
   }
   componentDidMount() {
@@ -58,11 +52,11 @@ class StepTag extends React.Component {
     return (
       <>
         {console.log(this.state.list)}
-        <Steps current={this.state.list.currentStage.stageId}>
+        {/* <Steps current={this.state.list.currentStage.stageId}>
           {this.state.list.stages.map(data => (
             <Step title={data.stageName} description={data.stageTimes.stageBegin + "——" + data.stageTimes.stageEnd} />
           ))}
-        </Steps>
+        </Steps> */}
       </>
     );
   }
@@ -125,8 +119,8 @@ class Apps extends React.Component {
           <Title>{this.state.list.data.contestName}</Title>
           <span style={{ marginRight: 8 }}>主办单位:</span>
           <Tag color="blue">
-             {this.state.list.data.contestOrganizer}
-           </Tag>
+            {this.state.list.data.contestOrganizer}
+          </Tag>
           <Card>
             <StepTag />
           </Card>
@@ -138,7 +132,7 @@ class Apps extends React.Component {
           </Card>
           <Card bordered={false}>
             <Title level={2}>比赛简介</Title>
-          {this.state.list.data.description}
+            {this.state.list.data.description}
           </Card>
         </Card>
       </>

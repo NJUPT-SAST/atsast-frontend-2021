@@ -1,57 +1,99 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader } from 'antd';
+import { Typography, Row, Col, Card, Button, Radio, Breadcrumb, PageHeader, Divider } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
-class Detail extends React.Component {
+class App extends React.Component {
   state = {
     list: {
       success: "",
       errMsg: "",
       errCode: "",
       data: {
-        contestId: "",
-        masterUid: "",
         contestName: "",
         description: "",
-        currAdmin: "",
-        isTeam: "",
-        isJoin: "",
-        comment: "",
-        pushlink: "",
         contestOrganizer: "",
         contestHost: "",
         contestHelper: "",
-        currStu: "",
-        banners: "",
+        isTeam: "",
         teamGroup: "",
-        subjectCategory: "",
-        workCategory: "",
         joinGrade: "",
         isInstructor: "",
-        enable: "",
-        judging: "",
+        workCategory: "",
+        subjectCategory: "",
         minMember: "",
         maxMember: "",
         minInstructor: "",
         maxInstructor: "",
-        isTech: "",
-        contestType: "",
-        stageTemps: "",
-        stages: "",
+        stages: [
+          {
+            stageName: "",
+            stageType: "",
+            stageBegin: "",
+            stageEnd: "",
+          }
+        ],
+        fileUrl: "",
+        banners: [
+          "",
+        ]
       }
     }
   }
 
   componentDidMount() {
-    fetch('https://yapi.sast.fun/mock/13/user/contestInfo', {
+    fetch('https://yapi.sast.fun/mock/13/superadmin/check', {
       method: 'get',
     })
       .then(res => res.json())
       .then(json => {
         this.setState({ list: json });
       })
+    // fetch(url, {
+    //   //请求方式
+    //   method: 'POST',
+    //   //将请求的参数转成json
+    //   body: JSON.stringify(param),
+    //   //请求头
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   }
+    //   // 请求的返回值
+    // }).then(function (response) {
+    //   if (response.status === 200) {
+    //     response.json().then(function (data) {
+    //       //获取请求的返回字段
+    //       console.log(data);
+    //       console.log(data.flag);
+    //       console.log(data.message);
+    //       console.log(data.data)
+    //     })
+    //   } else {
+    //     alert("出现一个问题");
+    //   }
+
+    // })
   }
 
+
+  handleClick = () => {
+    fetch('http://pipe.sast.codes:7566/mock/13/superadmin/check/1', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+
+      },
+      body: JSON.stringify({
+        result: '1',
+        comment: '',
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list1: json });
+        console.log(this.state.list1);
+      })
+
+  }
   render() {
     return (
       <>
@@ -102,7 +144,7 @@ class Detail extends React.Component {
               <h3>赛制</h3>
             </Col>
             <Col span={13}>
-              <h3>{this.state.list.data.contestType}</h3>
+              <h3>{this.state.list.data.isTeam}</h3>
             </Col>
           </Row>
         </Card>
@@ -153,6 +195,16 @@ class Detail extends React.Component {
             <Col span={11}>
               <h3>比赛流程</h3>
             </Col>
+            <Col span={13}>
+              {this.state.list.data.stages.map(stages => (
+                <>
+                  <h3>阶段名称：{stages.stageName}</h3>
+                  <h3>阶段类型：{stages.stageType}</h3>
+                  <h3>时间：{stages.stageBegin} —— {stages.stageEnd}</h3>
+                  <Divider />
+                </>
+              ))}
+            </Col>
           </Row>
         </Card>
         <Card hoverable>
@@ -161,7 +213,7 @@ class Detail extends React.Component {
               <h3>比赛策划案</h3>
             </Col>
             <Col span={13}>
-              <Button type="primary">
+              <Button type="primary" target={this.state.list.data.fileUrl}>
                 查看
               </Button>
             </Col>
@@ -173,8 +225,10 @@ class Detail extends React.Component {
               <h3>横幅内容</h3>
             </Col>
             <Col span={13}>
-                <h3>{this.state.list.data.banners}</h3>
-              </Col>
+              {this.state.list.data.banners.map(banners => (
+                <h3>{banners}</h3>
+              ))}
+            </Col>
           </Row>
         </Card>
         <Card hoverable>
@@ -194,7 +248,7 @@ class Detail extends React.Component {
             <Col span={11}>
             </Col>
             <Col span={12}>
-              <Button danger>
+              <Button danger onClick={this.handleClick}>
                 打回
               </Button>
             </Col>
@@ -209,7 +263,7 @@ class Detail extends React.Component {
 function CreateApproval() {
   return (
     <div>
-      <Detail />
+      <App />
     </div>
   );
 }

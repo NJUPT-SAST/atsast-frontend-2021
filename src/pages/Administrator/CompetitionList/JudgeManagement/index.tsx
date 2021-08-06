@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader} from 'antd';
+import { Typography, Row, Col, Card, Space, Button, Upload, Popconfirm, Table, Breadcrumb, PageHeader, Divider } from 'antd';
 import { UploadOutlined, PlusOutlined, } from '@ant-design/icons'
 
 const { Text } = Typography;
@@ -7,20 +7,20 @@ const { Text } = Typography;
 const columns = [
   {
     title: '姓名',
-    dataIndex: 'name',
+    dataIndex: 'judgeName',
   },
   {
     title: '学院',
-    dataIndex: 'college',
+    dataIndex: 'faculty',
   },
   {
     title: '评审进度',
-    dataIndex: 'progress',
-    sorter: (a, b) => (a.a/a.b) - (b.a/b.b),
+    dataIndex: 'judgeCurr',
+    sorter: (a, b) => (a.judgeCurr / a.judgeTotal) - (b.judgeCurr / b.judgeTotal),
   },
   {
     title: '状态',
-    dataIndex: 'state',
+    dataIndex: 'judgeStage',
     filters: [
       {
         text: '已完成',
@@ -43,7 +43,7 @@ const columns = [
   },
   {
     title: '工号',
-    dataIndex: 'id',
+    dataIndex: 'judgeId',
   },
   {
     title: '操作',
@@ -51,7 +51,7 @@ const columns = [
     render: () => (
       <Space size="middle">
         <a href="/admin/competition-list/judge-management/judge-authorization">授权</a>
-        |
+        <Divider type="vertical" />
         <a>删除</a>
       </Space>
     ),
@@ -64,29 +64,32 @@ for (let i = 0; i < 46; i++) {
     key: i,
     name: `Edward King ${i}`,
     college: 'huangx英才学院',
-    a: `${i+1}`,
-    b: `${i+5}`,
-    progress: `${i+1}/${i+5}`,
+    a: `${i + 1}`,
+    b: `${i + 5}`,
+    progress: `${i + 1}/${i + 5}`,
     state: '评审中',
-    id: `${20030101+i}`,
+    id: `${20030101 + i}`,
   });
 }
 
 class App extends React.Component {
   state = {
-    selectedRowKeys: [], 
-    // list: {
-    //   data: [
-    //     {
-    //       judgeName:"",
-    //       judgeId:"",
-    //       faculty:"",
-    //       judgeStage:"",
-    //       judgeCurr:"",
-    //       judgeTotal:"",
-    //     }
-    //   ]
-    // }
+    selectedRowKeys: [],
+    list: {
+      data: [
+        {
+          uid:"",
+          judgeName:"",
+          judgeId:"",
+          faculty:"",
+          judgeStage:"",
+          judgeCurr:"",
+          judgeTotal:"",
+          email:"",
+          contestId:"",
+        }
+      ]
+    }
   };
   onSelectChange = selectedRowKeys => {
     // eslint-disable-next-line no-console
@@ -94,17 +97,16 @@ class App extends React.Component {
     this.setState({ selectedRowKeys });
   };
 
-  // componentDidMount() {
-  //   fetch('https://yapi.sast.fun/mock/13/admin/judgelist', {
-  //     method: 'get',
-  //     // mode: 'cors',
-  //   })
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       this.setState({ list: json });
-  //       // console.log(this.state.list);
-  //     })
-  // }
+  componentDidMount() {
+    fetch('http://pipe.sast.codes:7566/mock/13/admin/judgelist', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ list: json });
+        console.log(this.state.list);
+      })
+  }
 
   render() {
     const { selectedRowKeys } = this.state;
@@ -117,7 +119,7 @@ class App extends React.Component {
         Table.SELECTION_NONE,
       ],
     };
-    return <Table rowSelection={rowSelection} columns={columns} dataSource={data} />;
+    return <Table rowSelection={rowSelection} columns={columns} dataSource={this.state.list.data} />;
   }
 }
 
