@@ -1,13 +1,12 @@
 import React from 'react';
-import { Card, Input, Space, Radio, Select, Carousel, List, Typography, } from 'antd';
+import { Card, Input, Space, Radio, Select, Carousel, List, Typography, Collapse, } from 'antd';
 import './index.less';
-
-const { Text, Title } = Typography;
-
+const { Paragraph, Text, Title } = Typography;
 // 搜索栏相关
 const { Search } = Input;
 const { Option } = Select;
-
+//折叠面板
+const { Panel } = Collapse;
 
 class App extends React.Component {
 
@@ -77,7 +76,6 @@ class App extends React.Component {
         })
         this.setState({
         })
-        console.log(this.state.joinGrades);
       })
   }
   onSearch = (value) => {
@@ -139,7 +137,6 @@ class App extends React.Component {
   }
   handleChange0 = (value) => {
     this.state.listData = [];
-    console.log(value)
     this.state.list.data.map(data => {
       if (value.indexOf(data.joinGrade) != -1) {
         this.state.listData.push(data);
@@ -179,39 +176,26 @@ class App extends React.Component {
           </div>
         </Carousel>
         <Card>
-          <Space direction="horizontal">
-            <text>比赛名称搜索：</text>
-            <Search
-              placeholder="请输入比赛名称"
-              allowClear
-              enterButton="搜索"
-              size="middle"
-              onSearch={this.onSearch}
-            />
-          </Space>
-        </Card>
-        <Card>
-
-          <Space>
-            <text>所属类目：</text>
-            <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
+          <Collapse accordion defaultActiveKey={['1']} ghost>
+            <Panel header={<text>比赛名称搜索：</text>} key="1">
+              <Search
+                placeholder="请输入比赛名称"
+                allowClear
+                enterButton="搜索"
+                size="middle"
+                style={{ width: '300px' }}
+                onSearch={this.onSearch}
+              />
+            </Panel>
+            <Panel header="所属类目：" key="2">
+              <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
               <Radio.Button value="a" onClick={this.handleClick0}>全部</Radio.Button>
               <Radio.Button value="b" onClick={this.handleClick1}>理工类</Radio.Button>
               <Radio.Button value="c" onClick={this.handleClick2}>社科类</Radio.Button>
               <Radio.Button value="d" onClick={this.handleClick3}>综合类</Radio.Button>
             </Radio.Group>
-          </Space>
-
-        </Card>
-        <Card>
-          <Space>
-            <span>
-              <text>其他选项：</text>
-            </span>
-            <span>
-              <text>参赛对象：</text>
-            </span>
-            <span>
+            </Panel>
+            <Panel header="参赛对象：" key="3">
               <Select
                 mode="tags"
                 placeholder=""
@@ -221,11 +205,8 @@ class App extends React.Component {
                 <Option key={joinGrade}>{joinGrade}</Option>
               ))}
               </Select>
-            </span>
-            <span>
-              <text>主办方：</text>
-            </span>
-            <span>
+            </Panel>
+            <Panel header="主办方：" key="4">
               <Select
                 mode="tags"
                 placeholder=""
@@ -237,18 +218,14 @@ class App extends React.Component {
                   <Option key={Organizer}>{Organizer}</Option>
                 ))}
               </Select>
-            </span>
-          </Space>
+            </Panel>
+          </Collapse>
         </Card>
         <Card>
-
           <List
             itemLayout="vertical"
             size="large"
             pagination={{
-              onChange: page => {
-                console.log(page);
-              },
               pageSize: 5,
             }}
             dataSource={this.state.listData}
@@ -286,8 +263,6 @@ class App extends React.Component {
               </List.Item>
             )}
           />
-
-
         </Card>
       </>
     )
