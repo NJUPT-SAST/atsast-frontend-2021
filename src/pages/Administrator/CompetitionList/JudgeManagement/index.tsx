@@ -58,19 +58,6 @@ const columns = [
   },
 ];
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    college: 'huangx英才学院',
-    a: `${i + 1}`,
-    b: `${i + 5}`,
-    progress: `${i + 1}/${i + 5}`,
-    state: '评审中',
-    id: `${20030101 + i}`,
-  });
-}
 
 class App extends React.Component {
   state = {

@@ -50,10 +50,12 @@
   },
   // 个人信息页 路由并非由此进入
   {
-    path: '/personalIn-formation',
-    // name: '个人信息',
-    // icon: 'bulb',
-    component: './PersonalInformation',
+    path: '/account/center',
+    component: './Account/Center',
+  },
+  {
+    path: '/account/settings',
+    component: './Account/Settings',
   },
   {
     path: '/judge',

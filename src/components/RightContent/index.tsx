@@ -29,20 +29,6 @@ const GlobalHeaderRight: React.FC = () => {
   }
   return (
     <Space className={className}>
-      <HeaderSearch
-        className={`${styles.action} ${styles.search}`}
-        placeholder="站内搜索"
-        defaultValue="请输入你想要查询的"
-        options={[
-          {
-            label: <a href="https://sast.njupt.edu.cn/">SAST主页</a>,
-            value: 'SAST Index',
-          },
-        ]}
-        // onSearch={value => {
-        //   console.log('input', value);
-        // }}
-      />
       <NoticeIcon />
       <Avatar />
       {REACT_APP_ENV && (
