@@ -65,17 +65,15 @@ class App extends React.Component {
           list: json,
           listData: json.data,
         });
-
         this.state.list.data.map(data => {
           this.state.Organizers.push(data.contestOrganizer);
-
         })
         this.state.list.data.map(data => {
           this.state.joinGrades.push(data.joinGrade);
-
         })
         this.setState({
         })
+        // console.log(this.props)
       })
   }
   onSearch = (value) => {
@@ -189,11 +187,11 @@ class App extends React.Component {
             </Panel>
             <Panel header="所属类目：" key="2">
               <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
-              <Radio.Button value="a" onClick={this.handleClick0}>全部</Radio.Button>
-              <Radio.Button value="b" onClick={this.handleClick1}>理工类</Radio.Button>
-              <Radio.Button value="c" onClick={this.handleClick2}>社科类</Radio.Button>
-              <Radio.Button value="d" onClick={this.handleClick3}>综合类</Radio.Button>
-            </Radio.Group>
+                <Radio.Button value="a" onClick={this.handleClick0}>全部</Radio.Button>
+                <Radio.Button value="b" onClick={this.handleClick1}>理工类</Radio.Button>
+                <Radio.Button value="c" onClick={this.handleClick2}>社科类</Radio.Button>
+                <Radio.Button value="d" onClick={this.handleClick3}>综合类</Radio.Button>
+              </Radio.Group>
             </Panel>
             <Panel header="参赛对象：" key="3">
               <Select
@@ -243,7 +241,7 @@ class App extends React.Component {
                 <List.Item.Meta
                   title={
                     <Title level={3}>
-                      比赛名称：{item.contestName}
+                      比赛名称：{<a href={'/competition/detail?contestId='+item.contestName}>{item.contestName}</a>}
                     </Title>
                   }
                   description={
