@@ -219,6 +219,7 @@ class App extends React.Component {
               <Input value={this.state.list.data.hometown} onChange={this.inputChange11.bind(this)} />
             </Descriptions.Item>
           </Descriptions>
+          <br/>
           <Button type="primary" htmlType="submit" onClick={this.Submit}>
             提交修改
           </Button>
