@@ -42,6 +42,10 @@
     component: './Competition/Detail/StateFile',
   },
   {
+    path: '/competition/detail/team-state',
+    component: './Competition/TeamState',
+  },
+  {
     path: '/lecture',
     name: '授课',
     icon: 'bulb',

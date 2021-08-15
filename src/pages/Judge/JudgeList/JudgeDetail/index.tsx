@@ -1,87 +1,147 @@
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Input, Form, Button, Row, Col } from 'antd';
-import type { SelectProps } from 'antd/es/select';
+import { Card, Input, Form, Button, Row, Col, Breadcrumb, InputNumber } from 'antd';
 
-// 表单组件相关
-const onFinish = (values: any) => {
-  // eslint-disable-next-line no-console
-  console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo: any) => {
-  // eslint-disable-next-line no-console
-  console.log('Failed:', errorInfo);
-};
+import { history } from 'umi';
 
-export interface DebounceSelectProps<ValueType = any>
-  extends Omit<SelectProps<ValueType>, 'options' | 'children'> {
-  fetchOptions: (search: string) => Promise<ValueType[]>;
-  debounceTimeout?: number;
+
+class App extends React.Component {
+  state = {
+    get: {
+      "comment": "",
+      "score": "",
+      fileUrls:[
+      ]
+    },
+    list: [
+      {
+        "teamName": "",
+        "teamId": "",
+      },
+    ]
+  };
+  componentDidMount() {
+    let teamId = window.location.href.split('?teamId')[1]
+    if (typeof (teamId) == "undefined") {
+      console.log("参数错误");
+      history.push('/404');
+    }
+    let url = 'http://pipe.sast.codes:7566/mock/13/judge/getcomment?teamId=' + teamId
+    fetch(url, {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          get: json,
+        });
+        console.log(this.state.get)
+      });
+    // form.setFieldsValue({
+    //   note: 'Hello world!',
+    //   gender: 'male',
+    // });
+  }
+  onFinish = (values: any) => {
+    console.log(values);
+  };
+  inputChange1 = (val) => {
+    // console.log(val)
+    let obj1 = Object.assign(this.state.get, { score: val });
+    let obj = Object.assign(this.state, { get: obj1 });
+    this.setState({
+      obj
+    })
+    // console.log(this.state)
+  }
+  inputChange2 = (val) => {
+    // console.log(val)
+    // console.log(val.target.value)
+    let obj1 = Object.assign(this.state.get, { comment: val.target.value });
+    let obj = Object.assign(this.state, { get: obj1 });
+    this.setState({
+      obj
+    })
+  }
+
+  Submit = () => {
+    console.log(this.state.get)
+    fetch('http://pipe.sast.codes:7566/mock/13/judge/comment', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(
+        this.state.get
+      )
+    })
+      .then(res => {console.log(res)})
+  }
+
+  render() {
+    return (
+      <>
+        <Breadcrumb>
+          <Breadcrumb.Item>
+            <a href="/judge">评审页</a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a href="/judge/judge-list">评审列表</a>
+          </Breadcrumb.Item>
+        </Breadcrumb>
+        <Card title="材料">
+          {this.state.get.fileUrls.map(data =>(
+            <>
+            <a href={data}>{data}</a>
+            <br />
+            </>
+          ))}
+        </Card>
+
+        <Card>
+          评分：
+          <InputNumber min={0} max={100} value={this.state.get.score} onChange={this.inputChange1.bind(this)} />
+          <br />
+          <br />
+          评语：
+          <br />
+          <br />
+          <Input.TextArea value={this.state.get.comment} onChange={this.inputChange2.bind(this)} />
+
+          <br/>
+          <br />
+          <Button type="primary" htmlType="submit" onClick={this.Submit}>
+            提交修改
+          </Button>
+        </Card>
+
+        <Card>
+          <Row>
+            <Col span={2}>
+              <Button type="link" block>
+                上一个
+              </Button>
+            </Col>
+            <Col span={20}></Col>
+            <Col span={2}>
+              {' '}
+              <Button type="link" block>
+                {/* 该部分还要实现跳转到下一个页面 */}
+                下一个
+              </Button>
+            </Col>
+          </Row>
+        </Card>
+      </>
+    )
+  }
 }
 
-const options = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
-}
-
-/* Row间Height（通用） */
-const rowHeightStyle = {
-  height: '16px',
-};
-
-const { TextArea } = Input;
-
-export default (): React.ReactNode => {
+function Judge() {
   return (
-    <PageContainer>
-      <Card title="材料">
-        <div id="materialInformation">{/* 此处存放材料 */}</div>
-      </Card>
-      <div style={rowHeightStyle}></div>
-      <Card title="评审">
-        <Form
-          name="basic"
-          labelCol={{ span: 2 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: false }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <Form.Item
-            label="打分："
-            name="score"
-            rules={[{ required: true, message: '1~100内整数' }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item label="评语：" name="comment" rules={[{ required: true, message: ' ' }]}>
-            <TextArea rows={4} />
-          </Form.Item>
-        </Form>
-      </Card>
-      <div style={rowHeightStyle}></div>
-      <Card>
-        <Row>
-          <Col span={2}>
-            <Button type="link" block>
-              上一个
-            </Button>
-          </Col>
-          <Col span={20}></Col>
-          <Col span={2}>
-            {' '}
-            <Button type="link" block>
-              {/* 该部分还要实现跳转到下一个页面 */}
-              下一个
-            </Button>
-          </Col>
-        </Row>
-      </Card>
-    </PageContainer>
+    <div>
+      <App />
+    </div>
   );
-};
+}
+
+export default Judge;
