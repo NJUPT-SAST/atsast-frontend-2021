@@ -1,4 +1,6 @@
-﻿export default [
+﻿import component from "@/locales/zh-CN/component";
+
+export default [
   {
     path: '/user',
     layout: false,
@@ -28,6 +30,12 @@
     icon: 'flag',
     access: 'canUse',
     component: './Competition',
+  },
+  {
+    path:'/tiaozhanbei',
+    name:'实验',
+    component:'./tiaozhanbei'
+
   },
   {
     path: '/competition/detail',

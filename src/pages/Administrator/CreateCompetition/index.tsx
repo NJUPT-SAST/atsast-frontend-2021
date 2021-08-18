@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { constructor } from 'react';
 import { Form, Input, Button, Row } from 'antd';
 /**/import { Card } from 'antd';
 import Col from 'antd/es/grid/col';
@@ -17,20 +17,97 @@ import { InboxOutlined } from '@ant-design/icons';
 import { Typography, Breadcrumb, PageHeader, } from 'antd';
 /* 限定团队最大最小人数 */
 import { InputNumber } from 'antd';
+import {Component} from 'react'
+import axios from 'axios'
+import { values } from 'lodash';
+
+// eslint-disable-next-line no-lone-blocks
+{/* 以下是返回页面 */ }
+function CreatCompetition() {
+  const matchParams: any = {
+    'masterUid': '',
+    'maxMember': '',
+    'minMember': '',
+    'maxInstructor': '',
+    'minInstructor': '',
+    'contestName': '',
+    'description': '',
+    'contestOrganizer': '',
+    'contestHost': '',
+    'contestHelper': '',
+    'isTeam': '',
+    'isInstructor': '',
+    'banners': '',
+    'teamGroup': '',
+    'subjectCategory': '',
+    'workCategory': '',
+    'joinGrade': '',
+    'isJoin': '',
+    'stageTemps': '',
+    'isTech': '',
+    'contestType': '',
+    'fileUrl': '',
+};
+const isParams = { 'judgeUid': 1, 'teamIds': [], 'contestId': 10 };
+const areCreatMatch = async (params: any) => {
+  await axios({
+    method: 'post',
+    url: 'http://pipe.sast.codes:7566/mock/13/admin/createcontest',
+    data: params,
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((response) => {
+      console.log('areCreatMatch-response:', response);
+      return response;
+    })
+    .catch((error) => {
+      console.log('areCreatMatch-error:', error);
+      return error;
+    });
+};
+  
+// 第一个组件，上传比赛信息
 
 
-
+ // eslint-disable-next-line no-lone-blocks
+  {/* 以下const是比赛主信息 */ }
 const Demo = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
-  };
+  //  const statedata =[ contestOrganizer,contestName,contestHost,contestHelper ]
+  // 解构赋值
+   // values.contestOrganizer = matchParams.contestOrganizer  
+    // 现在要做的是把表单里的值覆写给外部的对象match
+  //  var array1=new Array();
+  //  for (let i=0 ;i<=3;i=i+1){
+  //     array1[i]=values;
+  //  }
+  //  console.log(array1);
+  let {
+    contestName:contestName,
+    contestOrganizer:contestOrganizer,
+    contestHost:contestHost,
+    contestHelper:contestHelper,
+  }=values;
+  //array1=values;
+ // console.log(contestName);
+ // console.log(contestOrganizer);
+ // console.log(contestHost);
+ // console.log(contestHelper);
+  matchParams.contestName=contestName;
+  matchParams.contestOrganizer=contestOrganizer;
+  matchParams.contestHost=contestHost;
+  matchParams.contestHelper=contestHelper;
+  console.log(matchParams);
 
+
+  };
+  
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+  // eslint-disable-next-line @typescript-eslint/no-shadow
 
-  // eslint-disable-next-line no-lone-blocks
-  {/* 以下const是比赛主信息 */ }
   return (
     <Form
       name="basic"
@@ -42,14 +119,14 @@ const Demo = () => {
     >
       <Form.Item
         label="比赛名称"
-        name="GameName"
+        name="contestName"
         rules={[{ required: true, message: 'Please input game name!' }]}
       >
-        <Input />
+         <Input></Input>
       </Form.Item>
       <Form.Item
         label="主办方"
-        name="sponsor"
+        name="contestOrganizer"
         rules={[{ required: true, message: 'Please input sponsor name!' }]}
       >
         <Input />
@@ -57,17 +134,22 @@ const Demo = () => {
 
       <Form.Item
         label="承办方"
-        name="contractor"
+        name="contestHost"
         rules={[{ required: true, message: 'Please input contractor name!' }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="协办方"
-        name="co-organizer"
+        name="contestHelper"
         rules={[{ required: true, message: 'Please input co-organizer name!' }]}
       >
         <Input />
+      </Form.Item>
+      <Form.Item>
+      <Button type="primary" htmlType="submit">
+           提交
+          </Button>
       </Form.Item>
     </Form>
   );
@@ -75,18 +157,22 @@ const Demo = () => {
 
 // eslint-disable-next-line no-lone-blocks
 {/* 以下const是比赛类别选择 */ }
+
 const App1 = () => {
   const [value, setValue] = React.useState(1);
-
   const onChange = e => {
     console.log('radio checked', e.target.value);
     setValue(e.target.value);
+    //原来ANTD已经把value的值提取出来了。。只需要使用即可
+    //console.log(value);
+    matchParams.isTeam=value;
   };
+
 
   return (
     <Radio.Group onChange={onChange} value={value}>
-      <Radio value={1}>个人</Radio>
-      <Radio value={2}>团队</Radio>
+      <Radio value={"1"}>个人</Radio>
+      <Radio value={"2"}>团队</Radio>
     </Radio.Group>
 
   );
@@ -106,6 +192,7 @@ const App2 = () => {
   const onChange = e => {
     console.log('radio checked', e.target.value);
     setValue(e.target.value);
+    matchParams.isInstructor=value;
   };
 
   return (
@@ -124,12 +211,15 @@ const App3 = () => {
   const onChange = e => {
     console.log('radio checked', e.target.value);
     setValue(e.target.value);
+    matchParams.contestType=value;
+   // console.log(matchParams);
   };
 
   return (
     <Radio.Group onChange={onChange} value={value}>
-      <Radio value={1}>科学科技类</Radio>
-      <Radio value={2}>创新竞赛类</Radio>
+      <Radio value={0}>综合类</Radio>
+      <Radio value={1}>社科类</Radio>
+      <Radio value={2}>理工类</Radio>
     </Radio.Group>
 
   );
@@ -142,6 +232,7 @@ const App4 = () => {
   const onChange = e => {
     console.log('radio checked', e.target.value);
     setValue(e.target.value);
+    matchParams.contestType=value;
   };
 
   return (
@@ -170,7 +261,7 @@ const Demo1 = () => {
                   {...restField}
                   name={[name, 'first']}
                   fieldKey={[fieldKey, 'first']}
-                  rules={[{ required: true, message: '设定比赛流程初' }]}
+                  rules={[{ required: true, message: '请设定比赛流程初' }]}
                 >
                   <Input placeholder="设定比赛流程" />
                 </Form.Item>
@@ -223,7 +314,8 @@ const { TextArea } = Input;
 // eslint-disable-next-line no-lone-blocks
 {/* 以下是最大最小人数输入页面 */ }
 const Demo6 = () => {
-  const [value, setValue] = React.useState<string | number>('99');
+  const [value, setValue] = React.useState<string | number>('1');
+  
 
   return (
     <Space>
@@ -233,7 +325,7 @@ const Demo6 = () => {
   );
 };
 const Demo7 = () => {
-  const [value, setValue] = React.useState<string | number>('99');
+  const [value, setValue] = React.useState<string | number>('10');
 
   return (
     <Space>
@@ -242,10 +334,7 @@ const Demo7 = () => {
     </Space>
   );
 };
-
-// eslint-disable-next-line no-lone-blocks
-{/* 以下是返回页面 */ }
-function CreatCompetition() {
+// 以下是返回页面！！！！！！！！！！！！
   return (
     <div>
       <Breadcrumb>
@@ -279,6 +368,40 @@ function CreatCompetition() {
           <App1 />
         </Row>
       </Card>
+      <Card hoverable >
+          <Row>
+            <Col span={11}>
+              <h3>是否存在指导老师</h3>
+            </Col>
+            <Col>
+              <App2 />
+            </Col>
+          </Row>
+        </Card>
+        <Card hoverable>
+          <Row>
+            <Col span={11}>
+              <h3>是否设置作品类别</h3>
+            </Col>
+            <Col>
+              <App3 />
+            </Col>
+          </Row>
+        </Card>
+        <Card hoverable>
+          <Row>
+            <Col span={8}>
+              <h3>是否存设置团队组别</h3>
+            </Col>
+            <Col span={8}>
+              <App4 />
+            </Col>
+            <Col>
+             <Demo6 /> <Demo7/>
+
+            </Col>
+          </Row>
+        </Card>
       <div className="choice button">
         <Card hoverable className="nianji">
           <Row>
@@ -338,40 +461,7 @@ function CreatCompetition() {
           </Row>
         </Card>
 
-        <Card hoverable >
-          <Row>
-            <Col span={11}>
-              <h3>是否存在指导老师</h3>
-            </Col>
-            <Col>
-              <App2 />
-            </Col>
-          </Row>
-        </Card>
-        <Card hoverable>
-          <Row>
-            <Col span={11}>
-              <h3>是否设置作品类别</h3>
-            </Col>
-            <Col>
-              <App3 />
-            </Col>
-          </Row>
-        </Card>
-        <Card hoverable>
-          <Row>
-            <Col span={8}>
-              <h3>是否存设置团队组别</h3>
-            </Col>
-            <Col span={8}>
-              <App4 />
-            </Col>
-            <Col>
-             <Demo6 /> <Demo7/>
-
-            </Col>
-          </Row>
-        </Card>
+      
       </div>
 
       {/* 这里是比赛流程页面 */}
@@ -437,3 +527,4 @@ function CreatCompetition() {
 }
 
 export default CreatCompetition;
+
