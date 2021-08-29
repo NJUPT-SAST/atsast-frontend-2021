@@ -31,12 +31,7 @@ export default [
     access: 'canUse',
     component: './Competition',
   },
-  {
-    path:'/tiaozhanbei',
-    name:'实验',
-    component:'./tiaozhanbei'
-
-  },
+ 
   {
     path: '/competition/detail',
     component: './Competition/Detail',
