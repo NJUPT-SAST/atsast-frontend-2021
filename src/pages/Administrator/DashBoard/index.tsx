@@ -1,4 +1,5 @@
 import React from 'react';
+import { Breadcrumb, PageHeader, Card } from 'antd';
 
 
 // eslint-disable-next-line spaced-comment
@@ -7,8 +8,24 @@ import React from 'react';
 function AdminInformation() {
   return (
     <div>
-      AdminInformation
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href="/admin">管理页</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href="/admin/dash-board">仪表盘</a>
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <PageHeader
+        className="site-page-header"
+        title="仪表盘"
+        subTitle="仪表盘页面"
+      />
+      <Card>
+        欢迎来到管理员界面！
+      </Card>
     </div>
+
   );
 }
 

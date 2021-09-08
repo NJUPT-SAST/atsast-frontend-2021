@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form } from 'antd';
-import UserName from './UserName';
+import React, { useState, useEffect } from 'react';
+import { Card, Carousel, Row, Col, Calendar, Typography, Button, Modal, Input, Form, Avatar } from 'antd';
+import axios from 'axios'
+import './index.less';
+
+const { Title } = Typography;
+const { Grid } = Card;
 
 // 获取当前日期
 const nowDate = new Date();
 
-//表单查找好友
-
+// 表单查找好友
 const onFinish = (values: any) => {
+  // eslint-disable-next-line no-console
   console.log('Success:', values);
 };
 
 const onFinishFailed = (errorInfo: any) => {
+  // eslint-disable-next-line no-console
   console.log('Failed:', errorInfo);
 };
 
-
-
 // 卡片底部Meta元素
-// const { Meta } = Card;
+const { Meta } = Card;
 
 // 为给定的时间配备问候语
 function greeting(hour: number) {
@@ -43,66 +45,107 @@ function greeting(hour: number) {
   return words
 }
 
-/* 跑马灯文本格式 */
-const contentStyle = {
-  height: '450px',
-  color: '#fff',
-  lineHeight: '450px',  // 内嵌字符height
-  textAlign: 'center',
-  background: '#364d79'
-};
-
 /* Row间Height（通用） */
 const rowHeightStyle = {
   height: '16px'
 }
 
+/* “最新活动” 中内嵌卡片样式 */
+const gridStyle = {
+  width: '33.3%',
+  textAlign: 'center',
+};
+
+// 调用API显示用户名
+function Name(){
+  const [data,setData]=useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios('https://yapi.sast.fun/mock/13/user/selfinfo')
+      setData(result.data.data.realName);
+      // eslint-disable-next-line no-console
+      console.log(result);
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <Title level={4}><p>{data}</p></Title>
+  );
+}
+
 export default (): React.ReactNode => {
-  //组队对话框相关
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
   const handleOk = () => {
     setIsModalVisible(false);
   };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
   return (
-    <PageContainer>
+    <div>
       <Row gutter={16}>
         <Col span={2}></Col>
         <Col span={14}>
           <Card >
-            <Typography.Title level={4}><UserName /><p>{greeting(nowDate.getHours())}</p></Typography.Title>
-
+            <Row><Name/></Row>
+            <Title level={4}><p>{greeting(nowDate.getHours())}</p></Title>
           </Card>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
-          <Carousel autoplay>
-            <div>
-              <h3 style={contentStyle}>PicLink1</h3>
+          <Carousel autoplay effect="fade">
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>PicLink2</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>Picklink3</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
             </div>
-            <div>
-              <h3 style={contentStyle}>Piclink4</h3>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+            </div>
+            <div className="pic">
+              <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
             </div>
           </Carousel>
+          <Row style={rowHeightStyle}></Row>
+          <div className="nearestAct">
+            <Card title="最新活动" bordered={false} extra={<a href="#">更多活动</a>}>
+              <Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Grid>
+              <Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Grid>
+              <Grid style={gridStyle} >
+                <Meta
+                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                  title="技术沙龙-c语言急救车"
+                  description="用一节公开课的时间带领大家将考试的常见知识点和考察方式复习一遍，快速高效复习。" />
+              </Grid>
+            </Card>
+          </div>
         </Col>
         <Col span={6}>
-          <Button type="primary" onClick={showModal}>
-            邀请队友一起组队吧
-          </Button>
+          <div className="site-card-border-less-wrapper">
+            <Card title="快速开始" bordered={false}  extra={<a href="#">添加</a>}>
+              <Button type="link">快速组队</Button><br></br>
+              <Button type="link">查看比赛信息</Button><br></br>
+              <Button type="link">查看队伍信息</Button><br></br>
+            </Card>
+          </div>
+
           <Modal title="队友邀请" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-           
+
             <Form
               name="basic"
               labelCol={{ span: 8 }}
@@ -130,7 +173,7 @@ export default (): React.ReactNode => {
           </Modal>
           <Row style={rowHeightStyle}></Row>  {/* 空Row为卡片间增加留白 */}
 
-        {/* 右侧为卡片,显示日历*/}
+          {/* 右侧为卡片,显示日历 */}
           <Card bordered={false}>
             <Calendar
               fullscreen={false}
@@ -145,8 +188,7 @@ export default (): React.ReactNode => {
             />
           </Card>
         </Col>
-        <Col span={2}></Col>
       </Row>
-    </PageContainer>
+    </div>
   );
 };

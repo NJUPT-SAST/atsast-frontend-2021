@@ -1,161 +1,278 @@
 import React from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Input, Space, Radio, Pagination, DatePicker, Button, Select, Typography, Carousel, Collapse, Col, Row } from 'antd';
-import { AudioOutlined } from '@ant-design/icons';
-import type { SelectProps } from 'antd/es/select';
-import type { OptionsType } from 'rc-select/lib/interface';
-
-// 跑马灯格式
-const contentStyle = {
-  height: '450px',
-  color: '#fff',
-  lineHeight: '450px',  // 内嵌字符height
-  textAlign: 'center',
-  background: '#364d79'
-};
-
+import { Card, Input, Space, Radio, Select, Carousel, List, Typography, Collapse, } from 'antd';
+import './index.less';
+const { Paragraph, Text, Title } = Typography;
 // 搜索栏相关
 const { Search } = Input;
-
-// 折叠菜单相关
+const { Option } = Select;
+//折叠面板
 const { Panel } = Collapse;
 
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
+class App extends React.Component {
 
-// eslint-disable-next-line no-console
-const onSearch = (value: any) => console.log(value);
-
-export interface DebounceSelectProps<ValueType = any>
-  extends Omit<SelectProps<ValueType>, 'options' | 'children'> {
-  fetchOptions: (search: string) => Promise<ValueType[]>;
-  debounceTimeout?: number;
-}
-
-// 标签选择相关
-const { Title } = Typography;
-
-const options: OptionsType | { value: string; disabled: boolean; }[] | undefined = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`;
-  options.push({
-    value,
-    disabled: i === 10,
-  });
-}
-
-function handleChange(value: any) {
-  // eslint-disable-next-line no-console
-  console.log(`selected ${value}`);
-}
-
-// 日期选择相关
-const { RangePicker } = DatePicker;
-
-// 底部翻页相关
-function onChange(pageNumber: any) {
-  // eslint-disable-next-line no-console
-  console.log('Page: ', pageNumber);
-}
-
-// 赛程相关
-const App = () => (
-  <Radio.Group name="radiogroup" defaultValue={1}>
-    <Radio value={1}>A</Radio>
-    <Radio value={2}>B</Radio>
-  </Radio.Group>
-);
-
-/* Row间Height（通用） */
-const rowHeightStyle = {
-  height: '16px'
-}
-
-export default (): React.ReactNode => {
-  return (
-    <PageContainer>
-      <Row gutter={16}>
-        <Col span={2}></Col>
-        <Col span={15}>
-          <Carousel autoplay>
-            <div>
-              <h3 style={contentStyle}>PicLink1</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>PicLink2</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>Picklink3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>Piclink4</h3>
-            </div>
-          </Carousel>
-          <Card>
-            <Space direction="horizontal">
-              <text>搜索：</text>
+  state = {
+    list: {
+      success: "",
+      errMsg: "",
+      errCode: "",
+      data: [
+        {
+          masterUid: "",
+          contestName: "",
+          description: "",
+          currAdmin: "",
+          isTeam: "",
+          isJoin: "",
+          comment: "",
+          pushlink: "",
+          contestOrganizer: "",
+          contestHost: "",
+          contestHelper: "",
+          currStu: "",
+          banners: "",
+          teamGroup: "",
+          subjectCategory: "",
+          workCategory: "",
+          joinGrade: "",
+          isInstructor: "",
+          enable: "",
+          judging: "",
+          minMember: "",
+          maxMember: "",
+          minInstructor: "",
+          maxInstructor: "",
+          isTech: "",
+          contestType: "",
+          stages: "",
+          fileUrl: "",
+        }
+      ]
+    },
+    listData: [
+    ],
+    Organizers: [
+    ],
+    joinGrades: [
+    ],
+  }
+  componentDidMount() {
+    fetch('http://pipe.sast.codes:7566/mock/13/user/contestlist/', {
+      method: 'get',
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          list: json,
+          listData: json.data,
+        });
+        this.state.list.data.map(data => {
+          this.state.Organizers.push(data.contestOrganizer);
+        })
+        this.state.list.data.map(data => {
+          this.state.joinGrades.push(data.joinGrade);
+        })
+        this.setState({
+        })
+        // console.log(this.props)
+      })
+  }
+  onSearch = (value) => {
+    this.state.listData = [];
+    // console.log(this.state.list);
+    this.state.list.data.map(data => {
+      if (data.contestName.indexOf(value) != -1) {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+  }
+  handleClick0 = () => {
+    this.state.listData = [];
+    // console.log(this.state.list);
+    this.state.list.data.map(data => {
+      this.state.listData.push(data);
+    })
+    this.setState({
+    })
+    // console.log(this.state.listData);
+  }
+  handleClick1 = () => {
+    this.state.listData = [];
+    // console.log(this.state.list);
+    this.state.list.data.map(data => {
+      if (data.contestType == "理工类") {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+    // console.log(this.state.listData);
+  }
+  handleClick2 = () => {
+    this.state.listData = [];
+    // console.log(this.state.list);
+    this.state.list.data.map(data => {
+      if (data.contestType == "社科类") {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+    // console.log(this.state.listData);
+  }
+  handleClick3 = () => {
+    this.state.listData = [];
+    // console.log(this.state.list);
+    this.state.list.data.map(data => {
+      if (data.contestType == "综合类") {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+    // console.log(this.state.listData);
+  }
+  handleChange0 = (value) => {
+    this.state.listData = [];
+    this.state.list.data.map(data => {
+      if (value.indexOf(data.joinGrade) != -1) {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+  }
+  handleChange1 = (value) => {
+    this.state.listData = [];
+    this.state.list.data.map(data => {
+      if (value.indexOf(data.contestOrganizer) != -1) {
+        this.state.listData.push(data);
+      }
+    })
+    this.setState({
+    })
+  }
+  render() {
+    return (
+      <>
+        <Carousel autoplay effect="fade">
+          <div className="pic">
+            <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/01.jpg"></img>
+          </div>
+          <div className="pic">
+            <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/02.jpg"></img>
+          </div>
+          <div className="pic">
+            <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/03.jpg"></img>
+          </div>
+          <div className="pic">
+            <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/04.jpg"></img>
+          </div>
+          <div className="pic">
+            <img src="https://cdn.jsdelivr.net/gh/moroshima/CDN-Repository@0.4/Background/05.jpg"></img>
+          </div>
+        </Carousel>
+        <Card>
+          <Collapse accordion defaultActiveKey={['1']} ghost>
+            <Panel header={<text>比赛名称搜索：</text>} key="1">
               <Search
-                placeholder="input search text"
+                placeholder="请输入比赛名称"
                 allowClear
-                enterButton="Search"
+                enterButton="搜索"
                 size="middle"
-                onSearch={onSearch}
+                style={{ width: '300px' }}
+                onSearch={this.onSearch}
               />
-            </Space>
-          </Card>
-          <Card>
-            <Collapse ghost>
-              <Panel header="筛选" key="1">
-                <Card>
-                  <text>所属类目：</text>
-                  <Radio.Group defaultValue="a" size="middle">
-                    <Radio.Button value="a">Hangzhou</Radio.Button>
-                    <Radio.Button value="b">Shanghai</Radio.Button>
-                    <Radio.Button value="c">Beijing</Radio.Button>
-                    <Radio.Button value="d">Chengdu</Radio.Button>
-                  </Radio.Group>
-                </Card>
-                <Card>
-                  <text>主办方：</text>
-                  <Select
-                    mode="multiple"
-                    style={{ width: '30%' }}
-                    placeholder="Please select"
-                    defaultValue={[]}
-                    onChange={handleChange}
-                    options={options}
+            </Panel>
+            <Panel header="所属类目：" key="2">
+              <Radio.Group buttonStyle="solid" defaultValue="a" size="middle">
+                <Radio.Button value="a" onClick={this.handleClick0}>全部</Radio.Button>
+                <Radio.Button value="b" onClick={this.handleClick1}>理工类</Radio.Button>
+                <Radio.Button value="c" onClick={this.handleClick2}>社科类</Radio.Button>
+                <Radio.Button value="d" onClick={this.handleClick3}>综合类</Radio.Button>
+              </Radio.Group>
+            </Panel>
+            <Panel header="参赛对象：" key="3">
+              <Select
+                mode="tags"
+                placeholder=""
+                style={{ width: '250px' }}
+                onChange={this.handleChange0}
+              >{this.state.joinGrades.map(joinGrade => (
+                <Option key={joinGrade}>{joinGrade}</Option>
+              ))}
+              </Select>
+            </Panel>
+            <Panel header="主办方：" key="4">
+              <Select
+                mode="tags"
+                placeholder=""
+                tokenSeparators={[',']}
+                style={{ width: '250px' }}
+                onChange={this.handleChange1}
+              >
+                {this.state.Organizers.map(Organizer => (
+                  <Option key={Organizer}>{Organizer}</Option>
+                ))}
+              </Select>
+            </Panel>
+          </Collapse>
+        </Card>
+        <Card>
+          <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+              pageSize: 5,
+            }}
+            dataSource={this.state.listData}
+            renderItem={item => (
+              <List.Item
+                key={item.contestName}
+                extra={
+                  <img
+                    width={272}
+                    alt="logo"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                   />
-                </Card>
-                <Card>
-                  <text>赛程：</text>
-                  <App />
-                </Card>
-                <Card>
-                  <text>时间范围：</text>
-                  <RangePicker />
-                  <Button type="link">不看已结束的</Button>
-                </Card>
-              </Panel>
-            </Collapse>
-          </Card>
-          <Card>
-            <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={onChange} />
-          </Card>
-        </Col>
-        <Col span={5}>
-          <Card>
-            User Information
-          </Card>
-        </Col>
-        <Col span={2}></Col>
-      </Row>
-    </PageContainer>
+                }
+              >
+                <List.Item.Meta
+                  title={
+                    <Title level={3}>
+                      比赛名称：{<a href={'/competition/detail?contestId='+item.contestName}>{item.contestName}</a>}
+                    </Title>
+                  }
+                  description={
+                    <Space>
+                      <Text>
+                        比赛类目：{item.contestType}
+                        <br />
+                        比赛类型：{item.isTeam}
+                        <br />
+                        主办方：{item.contestOrganizer}
+                        <br />
+                        面向年级：{item.joinGrade}
+                      </Text>
+                    </Space>
+                  }
+                />
+              </List.Item>
+            )}
+          />
+        </Card>
+      </>
+    )
+  }
+}
+
+function Competition() {
+  return (
+    <div>
+      <App />
+    </div>
   );
-};
+}
+
+export default Competition;
